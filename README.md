@@ -53,11 +53,6 @@ DELET http://localhost:3000/usuarios/{"id do filme"}
 Selecione Params
 ```
 ```bash
-# compartilhar
-GET http://localhost:3000/usuarios/{"id do filme"}/compartilhar
-Selecione Params
-```
-```bash
 # alteração
 PUT http://localhost:3000/usuarios/{"id do filme"}
 Selecione Params
