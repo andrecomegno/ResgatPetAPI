@@ -6,7 +6,7 @@
 
 <div>
   <p align="center">
-    <img src="src/image/logo.jpg" alt="Logo" height="280">
+    <img src="https://github.com/andrecomegno/API-CRUD/blob/main/src/image/logo.jpg" alt="Logo" height="280">
   </p>
 </div>
 
@@ -39,37 +39,37 @@ $ npm run start:dev
 
 ```bash
 # inclusão
-POST http://localhost:3000/filmes
+POST http://localhost:3000/usuarios
 Selecione Body, raw, json
 ```
 ```bash
 # consultar
-GET http://localhost:3000/filmes
+GET http://localhost:3000/usuarios
 Selecione Params
 ```
 ```bash
 # exclusão
-DELET http://localhost:3000/filmes/{"id do filme"}
+DELET http://localhost:3000/usuarios/{"id do filme"}
 Selecione Params
 ```
 ```bash
 # compartilhar
-GET http://localhost:3000/filmes/{"id do filme"}/compartilhar
+GET http://localhost:3000/usuarios/{"id do filme"}/compartilhar
 Selecione Params
 ```
 ```bash
 # alteração
-PUT http://localhost:3000/filmes/{"id do filme"}
+PUT http://localhost:3000/usuarios/{"id do filme"}
 Selecione Params
 ```
 ```bash
 # json para testar
 {
-  "nome": "300 Spartans",
-  "duracao": 117,
-  "sinopse": "This is Spartaaaaa !!",
-  "ano": 2006,
-  "genero": "História True ;)"
+  "nome": "Juvenal Oliveira da Silva de Souza",
+  "cpf_cnpj": 25558878946,
+  "telefone": 14985554700,
+  "email": "juvenal_12345@gmail.com",
+  "senha": "123Batinha567"
 }
 ```
 
