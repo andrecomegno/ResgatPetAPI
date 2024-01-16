@@ -12,12 +12,15 @@ export class UsuarioController {
     constructor(private clsUsuarioArmazenados: UsuarioArmazenados){}
 
     @Get()
-    async RetornoFilmes(){
+    async RetornoUsuarios(){
         const usuarioListados = await this.clsUsuarioArmazenados.Usuarios;
         const listaRetorno = usuarioListados.map(
             usuario => new ListaUsuarioDTO(
                 usuario.id,
                 usuario.nome,
+                usuario.cpf_cnpj,
+                usuario.telefone,
+                usuario.email,
                 usuario.senha
             )
         );
@@ -30,6 +33,9 @@ export class UsuarioController {
         var usuario = new UsuarioEntity(
             uuid(),
             dadosUsuario.nome,
+            dadosUsuario.cpf_cnpj,
+            dadosUsuario.telefone,
+            dadosUsuario.email,
             dadosUsuario.senha
         )        
             
