@@ -41,6 +41,15 @@ $ npm run start:dev
 # inclusão
 POST http://localhost:3000/usuarios
 Selecione Body, raw, json
+
+{
+  "nome": "Juvenal Oliveira da Silva de Souza",
+  "cpf_cnpj": 25558878946,
+  "telefone": 14985554700,
+  "email": "juvenal_12345@gmail.com",
+  "senha": "123Batinha567"
+}
+
 ```
 ```bash
 # consultar
