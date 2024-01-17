@@ -11,8 +11,7 @@
 </div>
 
 # Introdução
-<p> Esse projeto é um API do Site ResgatPet desenvolvido no Senac no curso de Full-Stack </p>
-
+<p> Esse projeto é um API do Site ResgatPet com foco em resgatar pets abandonados e passar para as ONG 's responsáveis, desenvolvido no Senac no Projeto Integrador no curso de Full-Stack </p>
 
 **Professor**: JOÃO PEDRO PARELLA
 
