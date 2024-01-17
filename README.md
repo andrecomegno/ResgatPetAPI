@@ -11,7 +11,13 @@
 </div>
 
 # Introdução
-<p> Esse projeto é um API do Site ResgatPet com foco em resgatar pets abandonados e passar para as ONG 's responsáveis, desenvolvido no Senac no Projeto Integrador no curso de Full-Stack </p>
+<p> Esse projeto é um API do Site ResgatPet com foco em resgatar pets abandonados e passar para as ONG 's responsáveis, desenvolvido no Senac no Projeto Integrador no curso de Full-Stack. Essa API é responsavel por cadastrar todos os usuarios e formularios de pet econtrados.</p>
+
+Com a API será possivel fazer:
+- **Exclusão**: Permite excluir os Usuarios e Pet.
+- **Alteração**: Alteração dos Usuarios e Pet existentes.
+- **Inclusão**: Permite adicionar novos Usuarios e Pet.
+- **Consulta**: Consultar Usuarios e Pet.
 
 **Professor**: JOÃO PEDRO PARELLA
 
