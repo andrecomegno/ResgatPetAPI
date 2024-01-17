@@ -58,12 +58,12 @@ Selecione Params
 ```
 ```bash
 # exclusão
-DELET http://localhost:3000/usuarios/{"id do filme"}
+DELET http://localhost:3000/usuarios/{"id do usuario"}
 Selecione Params
 ```
 ```bash
 # alteração
-PUT http://localhost:3000/usuarios/{"id do filme"}
+PUT http://localhost:3000/usuarios/{"id do usuario"}
 Selecione Params
 ```
 ```bash
