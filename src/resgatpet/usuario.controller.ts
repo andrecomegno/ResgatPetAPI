@@ -48,6 +48,16 @@ export class UsuarioController {
         return retorno
     }
 
+    @Get('/login')
+    async Login(@Body() dadosUsuario: LoginUsuarioDTO){
+        var login = this.clsUsuarioArmazenados.validarLogin(dadosUsuario.email, dadosUsuario.senha)
+        return{
+            usuario: login[0],
+            status: login[1],
+            message: login[1] ? "Login Efetuado" : "Usuario ou senha invalidos !"
+        }
+    }
+
     @Put('/:id')
     async atualizaUsuario(@Param('id') id: string, @Body() novosDados: AtualizarUsuarioDTO){
         const usuarioAtualizado = await this.clsUsuarioArmazenados.atualizaUsuario(id, novosDados)

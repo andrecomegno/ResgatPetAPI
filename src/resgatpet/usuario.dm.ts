@@ -17,11 +17,27 @@ export class UsuarioArmazenados{
                 if(chave === 'id'){
                     return
                 }
+                else if(chave == 'senha'){
+                    usuarios.trocaSenha(valor);
+                    return;
+                }
                 usuarios[chave] = valor;
             }
         )
 
         return usuarios;
+    }
+
+    buscarPorEmail(email: string){
+        const possivelUsuario = this.#usuario.find(
+            usuarios => usuarios.email === email
+        );
+        return possivelUsuario;
+    }
+
+    validarLogin(email:string, senha:string){
+        const usuario = this.buscarPorEmail(email);
+        return [usuario,usuario.login(senha)];
     }
 
     async removeUsuario(id: string){
