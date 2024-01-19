@@ -37,7 +37,10 @@ export class UsuarioArmazenados{
 
     validarLogin(email:string, senha:string){
         const usuario = this.buscarPorEmail(email);
-        return [usuario,usuario.login(senha)];
+        if(usuario)
+            return [usuario,usuario.login(senha)];
+        else
+            return [null, false]
     }
 
     async removeUsuario(id: string){
