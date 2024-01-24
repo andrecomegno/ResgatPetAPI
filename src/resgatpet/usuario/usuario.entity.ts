@@ -1,6 +1,4 @@
 import * as bcrypt from 'bcrypt'
-import e from 'express';
-import { UsuarioArmazenados } from './usuario.dm';
 
 export class UsuarioEntity {
     id: string;

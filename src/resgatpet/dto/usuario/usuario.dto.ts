@@ -1,6 +1,8 @@
-import { IsInt, IsNotEmpty, IsString } from "class-validator";
+import { IsInt, IsNotEmpty, IsString, MinLength } from "class-validator";
+import { SenhaForte } from "src/resgatpet/validacao/validacao";
 
 export class UsuarioDTO {
+    
     @IsString()
     @IsNotEmpty({message: "Nome Não pode ser vazio"})
     nome: string;
@@ -18,6 +20,8 @@ export class UsuarioDTO {
     email: string;
 
     @IsString()
+    @MinLength(6,{message: "Senha precisa ter minimo 6 digitos"})
+    @SenhaForte({message: "Senha Muito Fraca"})    
     @IsNotEmpty({message: "Senha Não pode ser vazio"})
     senha: string;
 }

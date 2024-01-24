@@ -4,6 +4,14 @@ import { useContainer } from 'class-validator';
 import { AppModule } from './app.module';
 
 async function bootstrap() {
+  // const fs = require('fs');
+  // const httpsOptions = {
+  //   key: fs.readFileSync('./secrets/create-cert-key.pem'),
+  //   cert: fs.readFileSync('./secrets/create-cert.pem'),
+  // };
+
+  // const app = await NestFactory.create(AppModule, {httpsOptions});
+
   const app = await NestFactory.create(AppModule);
 
   app.useGlobalPipes(
