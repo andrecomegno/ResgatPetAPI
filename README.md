@@ -42,6 +42,17 @@ $ npm run start:dev
 
 ## Postman
 
+### Usuario
+```bash
+# consultar
+POST http://localhost:3000/usuarios/login
+Selecione Body, raw, json
+
+{
+  "email": "juvenal_12345@gmail.com",
+  "senha": "#@afgtu45"
+}
+```
 ```bash
 # inclusão
 POST http://localhost:3000/usuarios
@@ -52,9 +63,8 @@ Selecione Body, raw, json
   "cpf_cnpj": 25558878946,
   "telefone": 14985554700,
   "email": "juvenal_12345@gmail.com",
-  "senha": "123Batinha567"
+  "senha": "#@afgtu45"
 }
-
 ```
 ```bash
 # consultar
@@ -72,13 +82,59 @@ PUT http://localhost:3000/usuarios/{"id do usuario"}
 Selecione Params
 ```
 ```bash
-# json para testar
+# exemplo json
 {
   "nome": "Juvenal Oliveira da Silva de Souza",
   "cpf_cnpj": 25558878946,
   "telefone": 14985554700,
   "email": "juvenal_12345@gmail.com",
-  "senha": "123Batinha567"
+  "senha": "#@afgtu45"
+}
+```
+### Formulário
+
+```bash
+# inclusão
+POST http://localhost:3000/formulario
+Selecione Body, raw, json
+
+{
+  "fotoPet": "foto.jpg",
+  "endereco": "Rua Lopes 1734",
+  "cidade": "Bauru",
+  "sexo": "Macho",
+  "raca": "Poodle",
+  "cor": "Branco",
+  "acessorio": "Coleira",
+  "saude": "Ferido"
+}
+```
+```bash
+# consultar
+GET http://localhost:3000/formulario
+Selecione Params
+```
+```bash
+# exclusão
+DELET http://localhost:3000/formulario/{"id do formulario"}
+Selecione Params
+```
+```bash
+# alteração
+PUT http://localhost:3000/formulario/{"id do formulario"}
+Selecione Params
+```
+```bash
+# exemplo json
+{
+  "fotoPet": "foto.jpg",
+  "endereco": "Rua Lopes 1734",
+  "cidade": "Bauru",
+  "sexo": "Macho",
+  "raca": "Poodle",
+  "cor": "Branco",
+  "acessorio": "Coleira",
+  "saude": "Ferido"
 }
 ```
 
