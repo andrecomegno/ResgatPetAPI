@@ -6,12 +6,16 @@ import { ListaUsuarioDTO } from '../dto/usuario/listaUsuario.dto';
 import { UsuarioEntity } from './usuario.entity';
 import { v4 as uuid } from 'uuid'
 import { LoginUsuarioDTO } from '../dto/usuario/loginUsuario.dto';
+import { ApiCreatedResponse, ApiResponse, ApiTags } from '@nestjs/swagger';
 
+
+@ApiTags('usuario')
 @Controller('usuarios')
 export class UsuarioController {
 
     constructor(private clsUsuarioArmazenados: UsuarioArmazenados){}
 
+    @ApiResponse({ status: 200, description: 'Retorna os usuários cadastrados.'})
     @Get()
     async RetornoUsuarios(){
         const usuarioListados = await this.clsUsuarioArmazenados.Usuarios;
@@ -29,6 +33,7 @@ export class UsuarioController {
         return listaRetorno;
     }
 
+    @ApiCreatedResponse({ description: 'Retorna que houve sucesso ao cadastrar o usuário e retorna o ID criado.'})
     @Post()
     async CriaUsuario(@Body() dadosUsuario: UsuarioDTO){
         var usuario = new UsuarioEntity(
@@ -49,7 +54,9 @@ export class UsuarioController {
         return retorno
     }
 
-    @Get('/login')
+
+    @ApiResponse({ status: 200, description: 'Retorna se houve sucesso no login. O retorno "Status" diz se houve sucesso ou não.'})
+    @Post('/login')
     async Login(@Body() dadosUsuario: LoginUsuarioDTO){
         var login = this.clsUsuarioArmazenados.validarLogin(dadosUsuario.email, dadosUsuario.senha)
         return{
@@ -59,6 +66,8 @@ export class UsuarioController {
         }
     }
 
+    @ApiResponse({ status: 200, description: 'Retorna que houve sucesso ao alterar o usuário.'})
+    @ApiResponse({ status: 500, description: 'Retorna que o usuário não foi encontrado.'})
     @Put('/:id')
     async atualizaUsuario(@Param('id') id: string, @Body() novosDados: AtualizarUsuarioDTO){
         const usuarioAtualizado = await this.clsUsuarioArmazenados.atualizaUsuario(id, novosDados)
@@ -69,6 +78,7 @@ export class UsuarioController {
         }
     }
 
+    @ApiCreatedResponse({ description: 'Retorna que houve sucesso ao remover o usuário.'})
     @Delete('/:id')
     async removeUsuario(@Param('id') id: string){
         const usuarioRemovido = await this.clsUsuarioArmazenados.removeUsuario(id)

@@ -5,12 +5,16 @@ import { FormularioArmazenados } from './formulario.dm';
 import { FormularioDTO } from '../dto/formulario/formulario.dto';
 import { FormularioEntity } from './formulario.entity';
 import { AtualizarFormularioDTO } from '../dto/formulario/atualizarFormulario.dto';
+import { ApiCreatedResponse, ApiResponse, ApiTags } from '@nestjs/swagger';
 
+
+@ApiTags('formulario')
 @Controller('formulario')
 export class FormularioController {
 
     constructor(private clsFormularioArmazenados: FormularioArmazenados){}
 
+    @ApiCreatedResponse({ description: 'Retorna uma lista com os dados cadastrados.'})
     @Get()
     async RetornoFormulario(){
         const formularioListados = await this.clsFormularioArmazenados.Formularios;
@@ -31,6 +35,7 @@ export class FormularioController {
         return listaRetorno;
     }
 
+    @ApiCreatedResponse({ description: 'Cria o formulario com base nos dados fornecidos.'})
     @Post()
     async CriaFormulario(@Body() dadosFormulario: FormularioDTO){
         var formulario = new FormularioEntity(
@@ -54,6 +59,8 @@ export class FormularioController {
         return retorno
     }
 
+    @ApiResponse({ status: 200, description: 'Retorna que houve sucesso ao alterar o usuário.'})
+    @ApiResponse({ status: 500, description: 'Retorna que o usuário não foi encontrado.'})
     @Put('/:id')
     async atualizaFormulario(@Param('id') id: string, @Body() novosDados: AtualizarFormularioDTO){
         const formularioAtualizado = await this.clsFormularioArmazenados.atualizaFormulario(id, novosDados)
@@ -64,6 +71,7 @@ export class FormularioController {
         }
     }
 
+    @ApiCreatedResponse({ description: 'Retorna que houve sucesso ao remover o cadastro do formulário.'})
     @Delete('/:id')
     async removeFormulario(@Param('id') id: string){
         const formularioRemovido = await this.clsFormularioArmazenados.removeFormulario(id)
