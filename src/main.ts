@@ -1,5 +1,6 @@
 import { ValidationPipe } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
+import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import { useContainer } from 'class-validator';
 import { AppModule } from './app.module';
 
@@ -22,6 +23,18 @@ async function bootstrap() {
     })
   )
 
+    const config = new DocumentBuilder()
+    .setTitle('API Filmes e series - StreamingAPI')
+    .setDescription(
+      'A presente API tem como objetivo simular cadastros possiveis para uma API de Stream de filmes e series',
+    )
+    .setVersion('1.0')
+    .addTag('usuario')
+    .addTag('formulario')
+    .build();
+    const document = SwaggerModule.createDocument(app, config);
+    SwaggerModule.setup('api', app, document);
+  
   useContainer(app.select(AppModule),{fallbackOnErrors:true})
 
   await app.listen(3000);

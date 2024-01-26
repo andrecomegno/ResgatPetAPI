@@ -3,12 +3,12 @@ import * as bcrypt from 'bcrypt'
 export class UsuarioEntity {
     id: string;
     nome: string;
-    cpf_cnpj: number;
-    telefone: number;
+    cpf_cnpj: string;
+    telefone: string;
     email: string;
     senha: string;
 
-    constructor(id: string, nome: string, cpf_cnpj: number, telefone: number, email: string, senha: string) {
+    constructor(id: string, nome: string, cpf_cnpj: string, telefone: string, email: string, senha: string) {
         const saltOrRounds = 10;
 
         this.id = id;
