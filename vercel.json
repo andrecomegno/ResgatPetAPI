@@ -2,13 +2,14 @@
     "version": 2,
     "builds": [
       { 
-        "src": "caminho/do/seu/projeto", 
+        "src": "./dist/main.js", 
         "use": "@vercel/node" 
       }
     ],
     "routes": [
       { 
-        "handle": "vercel.json" 
+        "src": "/(*)",
+        "dest": "/dist/main.js"
       }
     ]
   }
