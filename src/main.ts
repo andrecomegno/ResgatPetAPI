@@ -5,14 +5,6 @@ import { useContainer } from 'class-validator';
 import { AppModule } from './app.module';
 
 async function bootstrap() {
-  // const fs = require('fs');
-  // const httpsOptions = {
-  //   key: fs.readFileSync('./secrets/create-cert-key.pem'),
-  //   cert: fs.readFileSync('./secrets/create-cert.pem'),
-  // };
-
-  // const app = await NestFactory.create(AppModule, {httpsOptions});
-
   const app = await NestFactory.create(AppModule);
 
   app.useGlobalPipes(
@@ -21,9 +13,17 @@ async function bootstrap() {
       whitelist: true,
       forbidNonWhitelisted: true,
     })
-  )
+  )  
+  
+  // Middleware para permitir CORS
+  app.use((res, next) => {
+    res.header('Access-Control-Allow-Origin', '*');
+    res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
+    res.header('Access-Control-Allow-Headers', 'Content-Type');
+    next();
+  });
 
-    const config = new DocumentBuilder()
+  const config = new DocumentBuilder()
     .setTitle('API do Site Resgat Pet - StreamingAPI')
     .setDescription(
       'A presente API tem como objetivo cadastrar pets perdidos junto com um cadastro de usuarios',
@@ -32,10 +32,10 @@ async function bootstrap() {
     .addTag('usuario')
     .addTag('formulario')
     .build();
-    const document = SwaggerModule.createDocument(app, config);
-    SwaggerModule.setup('api', app, document);
-  
-  useContainer(app.select(AppModule),{fallbackOnErrors:true})
+  const document = SwaggerModule.createDocument(app, config);
+  SwaggerModule.setup('api', app, document);
+
+  useContainer(app.select(AppModule), { fallbackOnErrors: true })
 
   await app.listen(3005);
 }
