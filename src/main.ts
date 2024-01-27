@@ -26,7 +26,7 @@ async function bootstrap() {
     const config = new DocumentBuilder()
     .setTitle('API do Site Resgat Pet - StreamingAPI')
     .setDescription(
-      'A presente API tem como objetivo simular cadastros possiveis para uma API',
+      'A presente API tem como objetivo cadastrar pets perdidos junto com um cadastro de usuarios',
     )
     .setVersion('1.0')
     .addTag('usuario')
