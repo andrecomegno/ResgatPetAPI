@@ -1,0 +1,15 @@
+{
+    "version": 2,
+    "builds": [
+      { 
+        "src": "caminho/do/seu/projeto", 
+        "use": "@vercel/node" 
+      }
+    ],
+    "routes": [
+      { 
+        "handle": "vercel.json" 
+      }
+    ]
+  }
+  

@@ -28,20 +28,20 @@ export class AtualizarFormularioDTO{
     cidade: string;
 
     @IsString()
-    @IsNotEmpty({message: "Sexo não pode ser vazio"})
-    @ApiProperty({
-        example: 'Macho ou Fêmea',
-        description: `Mais um termo para facilitar a descoberta do cachorro`,
-    })
-    sexo: string;
-
-    @IsString()
     @IsNotEmpty({message: "Raça não pode ser vazio"})
     @ApiProperty({
         example: 'Pastor alemão',
         description: `No caso de engano devemos saber a raça do cão em questão.`,
     })
     raca: string;
+
+    @IsString()
+    @IsNotEmpty({message: "Sexo não pode ser vazio"})
+    @ApiProperty({
+        example: 'Macho ou Fêmea',
+        description: `Mais um termo para facilitar a descoberta do cachorro`,
+    })
+    sexo: string;
 
     @IsString()
     @IsNotEmpty({message: "Cor não pode ser vazio"})
@@ -52,6 +52,14 @@ export class AtualizarFormularioDTO{
     cor: string;
 
     @IsString()
+    @IsNotEmpty({message: "Saude não pode ser vazio"})
+    @ApiProperty({
+        example: 'doente',
+        description: `Nos mostre o estado do cachorro para urgência.`,
+    })
+    saude: string;
+
+    @IsString()
     @IsNotEmpty({message: "Acessorio não pode ser vazio"})
     @ApiPropertyOptional({
         example: 'Coleira',
@@ -60,10 +68,10 @@ export class AtualizarFormularioDTO{
     acessorio: string;
 
     @IsString()
-    @IsNotEmpty({message: "Saude não pode ser vazio"})
+    @IsNotEmpty({message: "Usuario não pode ser vazio"})
     @ApiProperty({
-        example: 'doente',
-        description: `Nos mostre o estado do cachorro para urgência.`,
+        example: 'Ronaldo de Souza',
+        description: `Usuario que encontrou o Pet.`,
     })
-    saude: string;
+    usuario: string;
 }

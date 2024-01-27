@@ -4,10 +4,11 @@ export class ListaFormularioDTO{
         readonly fotoPet: string,
         readonly endereco: string,
         readonly cidade: string,
-        readonly sexo: string,
         readonly raca: string,
+        readonly sexo: string,
         readonly cor: string,
+        readonly saude: string,
         readonly acessorio: string,
-        readonly saude: string
-        ){}
+        readonly usuario: string
+    ){}
 }

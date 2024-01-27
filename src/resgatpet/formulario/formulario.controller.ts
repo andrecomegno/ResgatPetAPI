@@ -24,11 +24,12 @@ export class FormularioController {
                 formulario.fotoPet,
                 formulario.endereco,
                 formulario.cidade,
-                formulario.sexo,
                 formulario.raca,
+                formulario.sexo,
                 formulario.cor,
+                formulario.saude,
                 formulario.acessorio,
-                formulario.saude
+                formulario.usuario                
             )
         );
         
@@ -43,11 +44,12 @@ export class FormularioController {
             dadosFormulario.fotoPet,
             dadosFormulario.endereco,
             dadosFormulario.cidade,
-            dadosFormulario.sexo,
             dadosFormulario.raca,
+            dadosFormulario.sexo,            
             dadosFormulario.cor,
+            dadosFormulario.saude,
             dadosFormulario.acessorio,
-            dadosFormulario.saude
+            dadosFormulario.usuario
         )        
             
         this.clsFormularioArmazenados.AdicionarFormulario(formulario);        

@@ -3,21 +3,23 @@ export class FormularioEntity {
     fotoPet: string;
     endereco: string;
     cidade: string;
-    sexo: string;
     raca: string;
+    sexo: string;    
     cor: string;
-    acessorio: string;
     saude: string;
+    acessorio: string;
+    usuario: string;    
 
-    constructor(id: string, fotoPet: string, endereco: string, cidade: string, sexo: string, raca: string, cor: string, acessorio: string, saude: string,) {
+    constructor(id: string, fotoPet: string, endereco: string, cidade: string, raca: string, sexo: string, cor: string, saude: string, acessorio: string, usuario: string ) {
         this.id = id;
         this.fotoPet = fotoPet;
         this.endereco = endereco;
         this.cidade = cidade;
-        this.sexo = sexo;
         this.raca = raca;
+        this.sexo = sexo;        
         this.cor = cor;
-        this.acessorio = acessorio;
         this.saude = saude;
+        this.acessorio = acessorio;
+        this.usuario = usuario;
     }
 }

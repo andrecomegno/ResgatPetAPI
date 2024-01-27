@@ -24,9 +24,9 @@ async function bootstrap() {
   )
 
     const config = new DocumentBuilder()
-    .setTitle('API Filmes e series - StreamingAPI')
+    .setTitle('API do Site Resgat Pet - StreamingAPI')
     .setDescription(
-      'A presente API tem como objetivo simular cadastros possiveis para uma API de Stream de filmes e series',
+      'A presente API tem como objetivo simular cadastros possiveis para uma API',
     )
     .setVersion('1.0')
     .addTag('usuario')
@@ -37,6 +37,6 @@ async function bootstrap() {
   
   useContainer(app.select(AppModule),{fallbackOnErrors:true})
 
-  await app.listen(3000);
+  await app.listen(3005);
 }
 bootstrap();
