@@ -6,6 +6,12 @@ export class UsuarioArmazenados{
     #usuario: UsuarioEntity[] = [];  
 
     AdicionarUsuario(usuario: UsuarioEntity){
+        const emailExistente = this.#usuario.some(u => u.email === usuario.email);
+
+        if (emailExistente) {
+            throw new Error('E-mail já cadastrado');
+        }
+
         this.#usuario.push(usuario);
     }
 
