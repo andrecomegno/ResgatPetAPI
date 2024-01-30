@@ -7,7 +7,7 @@ export class FormularioDTO {
     @IsString()
     @IsOptional()
     @ApiProperty({
-        example: '<Foto do animal>',
+        example: 'foto.jpg',
         description: `A foto será enviada para a ONG com o objetivo de identificar o animal.`,
     })
     fotoPet: string;
@@ -15,7 +15,7 @@ export class FormularioDTO {
     @IsString()
     @IsNotEmpty({message: "Endereço não pode ser vazio"})
     @ApiProperty({
-        example: 'Avenida exemplo quadra 6 próximo à loja N',
+        example: 'Rua Lopes 1734',
         description: `esse endereço deve ser o mais claro possível para que seja facilitada a busca ao animal.`,
     })
     endereco: string;
@@ -31,7 +31,7 @@ export class FormularioDTO {
     @IsString()
     @IsNotEmpty({message: "Raça não pode ser vazio"})
     @ApiProperty({
-        example: 'Pastor alemão',
+        example: 'Poodle',
         description: `No caso de engano devemos saber a raça do cão em questão.`,
     })
     raca: string;
@@ -39,7 +39,7 @@ export class FormularioDTO {
     @IsString()
     @IsNotEmpty({message: "Sexo não pode ser vazio"})
     @ApiProperty({
-        example: 'Macho ou Fêmea',
+        example: 'Macho',
         description: `Mais um termo para facilitar a descoberta do cachorro`,
     })
     sexo: string;
@@ -47,7 +47,7 @@ export class FormularioDTO {
     @IsString()
     @IsNotEmpty({message: "Cor não pode ser vazio"})
     @ApiProperty({
-        example: 'Caramelo',
+        example: 'Branco',
         description: `Informar a cor do cachorro perdido.`,
     })
     cor: string;
@@ -55,7 +55,7 @@ export class FormularioDTO {
     @IsString()
     @IsNotEmpty({message: "Saude não pode ser vazio"})
     @ApiProperty({
-        example: 'doente',
+        example: 'Ferido',
         description: `Nos mostre o estado do cachorro para urgência.`,
     })
     saude: string;
@@ -71,7 +71,7 @@ export class FormularioDTO {
     @IsString()
     @IsNotEmpty({message: "Usuario não pode ser vazio"})
     @ApiProperty({
-        example: 'Ronaldo de Souza',
+        example: 'Juvenal Oliveira da Silva de Souza',
         description: `Usuario que encontrou o Pet.`,
     })
     usuario: string;
