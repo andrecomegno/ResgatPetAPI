@@ -60,8 +60,8 @@ Selecione Body, raw, json
 
 {
   "nome": "Juvenal Oliveira da Silva de Souza",
-  "cpf_cnpj": 25558878946,
-  "telefone": 14985554700,
+  "cpf_cnpj": "25558878946",
+  "telefone": "14985554700",
   "email": "juvenal_12345@gmail.com",
   "senha": "#@afgtu45"
 }
@@ -85,8 +85,8 @@ Selecione Params
 # exemplo json
 {
   "nome": "Juvenal Oliveira da Silva de Souza",
-  "cpf_cnpj": 25558878946,
-  "telefone": 14985554700,
+  "cpf_cnpj": "25558878946",
+  "telefone": "14985554700",
   "email": "juvenal_12345@gmail.com",
   "senha": "#@afgtu45"
 }
