@@ -60,8 +60,8 @@ Selecione Body, raw, json
 
 {
   "nome": "Juvenal Oliveira da Silva de Souza",
-  "cpf_cnpj": 25558878946,
-  "telefone": 14985554700,
+  "cpf_cnpj": "25558878946",
+  "telefone": "14985554700",
   "email": "juvenal_12345@gmail.com",
   "senha": "#@afgtu45"
 }
@@ -85,8 +85,8 @@ Selecione Params
 # exemplo json
 {
   "nome": "Juvenal Oliveira da Silva de Souza",
-  "cpf_cnpj": 25558878946,
-  "telefone": 14985554700,
+  "cpf_cnpj": "25558878946",
+  "telefone": "14985554700",
   "email": "juvenal_12345@gmail.com",
   "senha": "#@afgtu45"
 }
@@ -95,7 +95,7 @@ Selecione Params
 
 ```bash
 # inclusão
-POST http://localhost:3000/formulario
+POST http://localhost:3005/formulario
 Selecione Body, raw, json
 
 {
@@ -105,23 +105,24 @@ Selecione Body, raw, json
   "sexo": "Macho",
   "raca": "Poodle",
   "cor": "Branco",
-  "acessorio": "Coleira",
-  "saude": "Ferido"
+  "saude": "Ferido",
+  "acessorio": "Coleira",  
+  "usuario": "Juvenal Oliveira da Silva de Souza"
 }
 ```
 ```bash
 # consultar
-GET http://localhost:3000/formulario
+GET http://localhost:3005/formulario
 Selecione Params
 ```
 ```bash
 # exclusão
-DELET http://localhost:3000/formulario/{"id do formulario"}
+DELET http://localhost:3005/formulario/{"id do formulario"}
 Selecione Params
 ```
 ```bash
 # alteração
-PUT http://localhost:3000/formulario/{"id do formulario"}
+PUT http://localhost:3005/formulario/{"id do formulario"}
 Selecione Params
 ```
 ```bash
@@ -133,8 +134,9 @@ Selecione Params
   "sexo": "Macho",
   "raca": "Poodle",
   "cor": "Branco",
-  "acessorio": "Coleira",
-  "saude": "Ferido"
+  "saude": "Ferido",
+  "acessorio": "Coleira",  
+  "usuario": "Juvenal Oliveira da Silva de Souza"
 }
 ```
 
