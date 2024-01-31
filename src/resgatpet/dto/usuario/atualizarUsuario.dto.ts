@@ -1,6 +1,7 @@
-import { ApiProperty, ApiPropertyOptional } from "@nestjs/swagger";
-import { IsInt, IsNotEmpty, IsString, MinLength } from "class-validator";
-import { SenhaForte } from "../../validacao/validacao";
+import { ApiProperty } from "@nestjs/swagger";
+import { IsNotEmpty, IsString, MinLength } from "class-validator";
+import { EmailUnico } from "src/resgatpet/validacao/validacaoEmail";
+import { SenhaForte } from "src/resgatpet/validacao/validacaoSenha";
 
 export class AtualizarUsuarioDTO{
     
@@ -30,6 +31,7 @@ export class AtualizarUsuarioDTO{
 
     @IsString()
     @IsNotEmpty({message: "Email não pode ser vazio"})
+    @EmailUnico({ message: 'O email informado já existe' })
     @ApiProperty({
         example: 'teste@teste.com',
         description: `O email é utilizado para o login e identificação do usuário. Deve ser único.`,

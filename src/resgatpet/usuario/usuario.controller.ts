@@ -8,7 +8,6 @@ import { v4 as uuid } from 'uuid'
 import { LoginUsuarioDTO } from '../dto/usuario/loginUsuario.dto';
 import { ApiCreatedResponse, ApiResponse, ApiTags } from '@nestjs/swagger';
 
-
 @ApiTags('usuario')
 @Controller('usuarios')
 export class UsuarioController {

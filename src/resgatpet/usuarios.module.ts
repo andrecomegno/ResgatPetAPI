@@ -1,12 +1,11 @@
 import { Module } from "@nestjs/common";
-import { FormularioController as  FormularioController } from "./formulario/formulario.controller";
-import { FormularioArmazenados as FormularioArmazenados } from "./formulario/formulario.dm";
 import { UsuarioController as UsuarioController } from "./usuario/usuario.controller"; 
 import { UsuarioArmazenados as UsuarioArmazenados } from "./usuario/usuario.dm";
+import { EmailUnicoValidator } from "./validacao/validacaoEmail";
 
 @Module({
-    controllers:[UsuarioController, FormularioController],
-    providers: [UsuarioArmazenados, FormularioArmazenados]
+    controllers:[UsuarioController],
+    providers: [UsuarioArmazenados, EmailUnicoValidator]
 })
 
 export class UsuarioModule{}

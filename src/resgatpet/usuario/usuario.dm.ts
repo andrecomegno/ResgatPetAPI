@@ -6,12 +6,6 @@ export class UsuarioArmazenados{
     #usuario: UsuarioEntity[] = [];  
 
     AdicionarUsuario(usuario: UsuarioEntity){
-        const emailExistente = this.#usuario.some(u => u.email === usuario.email);
-
-        if (emailExistente) {
-            throw new Error('E-mail já cadastrado');
-        }
-
         this.#usuario.push(usuario);
     }
 
@@ -33,6 +27,13 @@ export class UsuarioArmazenados{
 
         return usuarios;
     }
+
+    validaEmail(email: string) {
+        const possivelUsuario = this.#usuario.find(
+          (usuario) => usuario.email === email,
+        );
+        return possivelUsuario !== undefined;
+      }
 
     buscarPorEmail(email: string){
         const possivelUsuario = this.#usuario.find(
