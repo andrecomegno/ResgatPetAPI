@@ -1,7 +1,7 @@
 import { ApiProperty } from "@nestjs/swagger";
 import { IsNotEmpty, IsString, MinLength } from "class-validator";
-import { EmailUnico } from "src/resgatpet/validacao/validacaoEmail";
-import { SenhaForte } from "src/resgatpet/validacao/validacaoSenha";
+import { EmailUnico } from "../../validacao/validacaoEmail";
+import { SenhaForte } from "../../validacao/validacaoSenha";
 
 
 export class UsuarioDTO {
