@@ -7,7 +7,6 @@ import { FormularioEntity } from './formulario.entity';
 import { AtualizarFormularioDTO } from '../dto/formulario/atualizarFormulario.dto';
 import { ApiCreatedResponse, ApiResponse, ApiTags } from '@nestjs/swagger';
 
-
 @ApiTags('formulario')
 @Controller('formulario')
 export class FormularioController {
