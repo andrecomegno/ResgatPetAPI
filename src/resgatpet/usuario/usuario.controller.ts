@@ -25,7 +25,8 @@ export class UsuarioController {
                 usuario.cpf_cnpj,
                 usuario.telefone,
                 usuario.email,
-                usuario.senha
+                usuario.senha,
+                usuario.foto
             )
         );
         
@@ -41,7 +42,8 @@ export class UsuarioController {
             dadosUsuario.cpf_cnpj,
             dadosUsuario.telefone,
             dadosUsuario.email,
-            dadosUsuario.senha
+            dadosUsuario.senha,
+            dadosUsuario.foto
         )        
             
         this.clsUsuarioArmazenados.AdicionarUsuario(usuario);        
@@ -85,6 +87,17 @@ export class UsuarioController {
         return{
             usuario: usuarioRemovido,
             message: 'Usuario removido com Sucesso :S'
+        }
+    }
+
+    @ApiResponse({ status: 200, description: 'Retorna que houve sucesso ao trocar a foto.'})
+    @ApiResponse({ status: 500, description: 'Retorna que a foto não foi encontrado.'})
+    @Post('/foto/:id')
+    async atualizaFoto(@Param('id') id: string,@Body() AlteraFotoUsuarioDTO){
+        const usuario = await this.clsUsuarioArmazenados.atualizaUsuario(id,AlteraFotoUsuarioDTO)
+
+        return{
+            usuario: usuario            
         }
     }
 }

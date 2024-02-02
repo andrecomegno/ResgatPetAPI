@@ -4,7 +4,7 @@ import { Request } from "express";
 
 @Injectable()
 export class ArquivoArmazenados{
-    #arquivos = [];
+    arquivos = [];
 
     async SalvarDados(file: Express.Multer.File, req: Request){
         const arquivo = new ArquivosEntity();
@@ -17,7 +17,14 @@ export class ArquivoArmazenados{
         // SOMENTE NOME DO ARQUIVO
         arquivo.url = `${file.filename}`;
 
-        this.#arquivos.push(arquivo)
+        this.arquivos.push(arquivo)
         return arquivo.url;
     }
+
+    async validaArquivo(nome: string){
+        const possivelArquivo = this.arquivos.find(
+          file => file.fileName === nome
+        );
+        return(possivelArquivo!==undefined)
+      }
 }
