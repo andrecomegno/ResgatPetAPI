@@ -15,7 +15,7 @@
 
 Com a API será possivel fazer:
 - **Exclusão**: Permite excluir os Usuarios e Pet.
-- **Alteração**: Alteração dos Usuarios e Pet existentes.
+- **Alteração**: Alteração dos Usuarios, Pet, Fotos.
 - **Inclusão**: Permite adicionar novos Usuarios, Pets e Upload de Fotos.
 - **Consulta**: Consultar Usuarios e Pet.
 
@@ -42,6 +42,13 @@ $ npm run start:dev
 
 ## Postman
 
+### Upload Foto
+```bash
+# inclusão de Foto
+POST http://localhost:3005/arquivos
+Selecione Body, form-data, key arquivo file value asdasdaslo.png
+
+```
 ### Usuario
 ```bash
 # consultar
@@ -65,12 +72,6 @@ Selecione Body, raw, json
   "email": "juvenal_12345@gmail.com",
   "senha": "#@afgtu45"
 }
-```
-```bash
-# inclusão de Foto
-POST http://localhost:3005/arquivos
-Selecione Body, form-data, key arquivo file value asdasdaslo.png
-
 ```
 ```bash
 # inclusão de Foto ao Usuario
@@ -119,7 +120,6 @@ POST http://localhost:3005/formulario
 Selecione Body, raw, json
 
 {
-  "fotoPet": "foto.jpg",
   "endereco": "Rua Lopes 1734",
   "cidade": "Bauru",
   "sexo": "Macho",
@@ -128,6 +128,23 @@ Selecione Body, raw, json
   "saude": "Ferido",
   "acessorio": "Coleira",  
   "usuario": "Juvenal Oliveira da Silva de Souza"
+}
+```
+```bash
+# inclusão
+POST http://localhost:3005/formulario/foto/{"url da foto"}
+Selecione Body, raw, json
+
+{
+  "endereco": "Rua Lopes 1734",
+  "cidade": "Bauru",
+  "sexo": "Macho",
+  "raca": "Poodle",
+  "cor": "Branco",
+  "saude": "Ferido",
+  "acessorio": "Coleira",  
+  "usuario": "Juvenal Oliveira da Silva de Souza"
+  "fotoPet": "asdasdaslo-4d06e95a-4ee7-4195-b48e-6cc05a264de8.png"
 }
 ```
 ```bash
@@ -148,7 +165,6 @@ Selecione Params
 ```bash
 # exemplo json
 {
-  "fotoPet": "foto.jpg",
   "endereco": "Rua Lopes 1734",
   "cidade": "Bauru",
   "sexo": "Macho",
