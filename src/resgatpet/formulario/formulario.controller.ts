@@ -82,5 +82,16 @@ export class FormularioController {
             message: 'Formulario removido com Sucesso :S'
         }
     }
+
+    @ApiResponse({ status: 200, description: 'Retorna que houve sucesso ao trocar a foto.'})
+    @ApiResponse({ status: 500, description: 'Retorna que a foto não foi encontrado.'})
+    @Post('/foto/:id')
+    async atualizaFoto(@Param('id') id: string,@Body() AlteraFotoFormularioDTO){
+        const usuario = await this.clsFormularioArmazenados.atualizaFormulario(id,AlteraFotoFormularioDTO)
+
+        return{
+            usuario: usuario            
+        }
+    }
 }
 
