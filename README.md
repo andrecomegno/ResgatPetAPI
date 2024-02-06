@@ -16,7 +16,7 @@
 Com a API será possivel fazer:
 - **Exclusão**: Permite excluir os Usuarios e Pet.
 - **Alteração**: Alteração dos Usuarios e Pet existentes.
-- **Inclusão**: Permite adicionar novos Usuarios e Pet.
+- **Inclusão**: Permite adicionar novos Usuarios, Pets e Upload de Fotos.
 - **Consulta**: Consultar Usuarios e Pet.
 
 **Professor**: JOÃO PEDRO PARELLA
@@ -45,7 +45,7 @@ $ npm run start:dev
 ### Usuario
 ```bash
 # consultar
-POST http://localhost:3000/usuarios/login
+POST http://localhost:3005/usuarios/login
 Selecione Body, raw, json
 
 {
@@ -55,7 +55,7 @@ Selecione Body, raw, json
 ```
 ```bash
 # inclusão
-POST http://localhost:3000/usuarios
+POST http://localhost:3005/usuarios
 Selecione Body, raw, json
 
 {
@@ -67,18 +67,38 @@ Selecione Body, raw, json
 }
 ```
 ```bash
+# inclusão de Foto
+POST http://localhost:3005/arquivos
+Selecione Body, form-data, key arquivo file value asdasdaslo.png
+
+```
+```bash
+# inclusão de Foto ao Usuario
+POST http://localhost:3005/usuarios/foto/{"url da foto"}
+Selecione Body, raw, json
+
+{
+  "nome": "Juvenal Oliveira da Silva de Souza",
+  "cpf_cnpj": "25558878946",
+  "telefone": "14985554700",
+  "email": "juvenal_12345@gmail.com",
+  "senha": "#@afgtu45"
+  "foto": "asdasdaslo-4d06e95a-4ee7-4195-b48e-6cc05a264de8.png"
+}
+```
+```bash
 # consultar
-GET http://localhost:3000/usuarios
+GET http://localhost:3005/usuarios
 Selecione Params
 ```
 ```bash
 # exclusão
-DELET http://localhost:3000/usuarios/{"id do usuario"}
+DELET http://localhost:3005/usuarios/{"id do usuario"}
 Selecione Params
 ```
 ```bash
 # alteração
-PUT http://localhost:3000/usuarios/{"id do usuario"}
+PUT http://localhost:3005/usuarios/{"id do usuario"}
 Selecione Params
 ```
 ```bash
