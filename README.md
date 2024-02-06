@@ -74,7 +74,7 @@ Selecione Body, raw, json
 }
 ```
 ```bash
-# inclusão de Foto ao Usuario
+# inclusão Foto Usuario
 POST http://localhost:3005/usuarios/foto/{"url da foto"}
 Selecione Body, raw, json
 
@@ -131,7 +131,7 @@ Selecione Body, raw, json
 }
 ```
 ```bash
-# inclusão
+# inclusão Foto Pet
 POST http://localhost:3005/formulario/foto/{"url da foto"}
 Selecione Body, raw, json
 
