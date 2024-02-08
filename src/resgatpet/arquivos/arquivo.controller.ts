@@ -17,6 +17,6 @@ export class ArquivoController{
 
     @Get(':imgpath')
     retornaArquivo(@Param('imgpath') Image, @Res() res){
-        return res.sendFile(Image,{root: './upload/files'})
+        return res.sendFile(Image,{root: '/tmp'})
     }
 }
