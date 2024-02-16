@@ -175,6 +175,9 @@ Selecione Params
   "usuario": "Juvenal Oliveira da Silva de Souza"
 }
 ```
+## UML
+<img src="src/image/uml.png" alt="Logo" height="280">
+
 
 ### 👾 Linguagens e Ferramentas
 <img align="left" alt="TypeScript" width="30px" src="https://github.com/andrecomegno/andrecomegno/blob/main/icon/typescript.png" />
