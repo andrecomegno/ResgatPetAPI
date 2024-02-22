@@ -61,7 +61,7 @@ export class UsuarioController {
     @ApiResponse({ status: 200, description: 'Retorna se houve sucesso no login. O retorno "Status" diz se houve sucesso ou não.'})
     @Post('/login')
     async Login(@Body() dadosUsuario: LoginUsuarioDTO){
-        var login = this.clsUsuarioArmazenados.validarLogin(dadosUsuario.nome, dadosUsuario.email, dadosUsuario.telefone, dadosUsuario.senha, dadosUsuario.level)
+        var login = this.clsUsuarioArmazenados.validarLogin(dadosUsuario.senha, dadosUsuario.email)
         return{
             usuario: login[1] ? login[0] : null,
             status: login[1],

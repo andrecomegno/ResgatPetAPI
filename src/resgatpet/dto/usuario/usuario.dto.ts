@@ -56,7 +56,6 @@ export class UsuarioDTO {
     foto: string;
 
     @IsString()
-    @IsOptional()
     @IsNotEmpty({message: " Level Não pode ser vazio "})
     @ApiProperty({
         example: 'level 1',
