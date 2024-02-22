@@ -53,5 +53,14 @@ export class UsuarioDTO {
         example: 'nomearquivo-idarquivo.png',
         description: `Esse campo é responsável pela foto do usuário, para ser enviado o dado correto é necessário que seja feito o upload pelo modulo FILES.`,
     })
-    foto: string; 
+    foto: string;
+
+    @IsString()
+    @IsOptional()
+    @IsNotEmpty({message: " Level Não pode ser vazio "})
+    @ApiProperty({
+        example: 'level 1',
+        description: `Esse campo é responsável pela nivel de acesso ao usuário e ONG.`,
+    })
+    level: string; 
 }

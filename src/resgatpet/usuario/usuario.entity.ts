@@ -7,9 +7,10 @@ export class UsuarioEntity {
     telefone: string;
     email: string;
     senha: string;
-    foto: string
+    foto: string;
+    level: string;
 
-    constructor(id: string, nome: string, cpf_cnpj: string, telefone: string, email: string, senha: string, foto: string) {
+    constructor(id: string, nome: string, cpf_cnpj: string, telefone: string, email: string, senha: string, foto: string, level: string) {
         const saltOrRounds = 10;
 
         this.id = id;
@@ -18,7 +19,8 @@ export class UsuarioEntity {
         this.telefone = telefone;
         this.email = email;
         this.senha = bcrypt.hashSync(senha, saltOrRounds);
-        this.foto = foto
+        this.foto = foto;
+        this.level = level;
     }
 
     login(senha){

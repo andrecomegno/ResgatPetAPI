@@ -42,10 +42,10 @@ export class UsuarioArmazenados{
         return possivelUsuario;
     }
 
-    validarLogin(email:string, senha:string){
+    validarLogin(nome:string, email:string, telefone:string, senha:string, level:string){
         const usuario = this.buscarPorEmail(email);
         if(usuario)
-            return [usuario,usuario.login(senha)];
+            return [usuario,usuario.login(nome,email,telefone,senha,level)];
         else
             return [null, false]
     }

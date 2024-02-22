@@ -6,6 +6,7 @@ export class ListaUsuarioDTO{
         readonly telefone: string,
         readonly email: string,
         readonly senha: string,
-        readonly foto: string
+        readonly foto: string,
+        readonly level: string
         ){}
 }
