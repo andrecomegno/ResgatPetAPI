@@ -11,8 +11,9 @@ export class ArquivoController{
     @Post()
     // ARQUIVO E A CHAVE QUE VAI DENTRO DO KEY NO POSTMAN
     @UseInterceptors(FileInterceptor('arquivo', multerConfig))
-    uploadArquivo(@UploadedFile() file: Express.Multer.File, @Req() req: Request){
-        return this.arquivos.SalvarDados(file, req)
+    async uploadArquivo(@UploadedFile() file: Express.Multer.File, @Req() req: Request){
+        var arquivo = await this.arquivos.SalvarDados(file, req);
+        return {nomeArquivo: arquivo}
     }
 
     @Get(':imgpath')
