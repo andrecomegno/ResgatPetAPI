@@ -34,7 +34,7 @@ export class UsuarioController {
         return listaRetorno;
     }
 
-    @ApiCreatedResponse({ description: 'Retorna que houve sucesso ao cadastrar o usuário e retorna o ID criado.'})
+    @ApiCreatedResponse({ status: 200, description: 'Retorna que houve sucesso ao cadastrar o usuário e retorna o ID criado.'})
     @Post()
     async CriaUsuario(@Body() dadosUsuario: UsuarioDTO){
         var usuario = new UsuarioEntity(
@@ -51,7 +51,8 @@ export class UsuarioController {
         this.clsUsuarioArmazenados.AdicionarUsuario(usuario);        
         var retorno={
             id: usuario.id,
-            message:'Usuario Criado =)'
+            message:'Usuario Criado =)',
+            status:200
         }
         
         return retorno
@@ -76,18 +77,20 @@ export class UsuarioController {
 
         return{
             usuario: usuarioAtualizado,
-            message: 'Usuario Atualizado com Sucesso ! ;)'
+            message: 'Usuario Atualizado com Sucesso ! ;)',
+            status:200
         }
     }
 
-    @ApiCreatedResponse({ description: 'Retorna que houve sucesso ao remover o usuário.'})
+    @ApiCreatedResponse({ status: 200, description: 'Retorna que houve sucesso ao remover o usuário.'})
     @Delete('/:id')
     async removeUsuario(@Param('id') id: string){
         const usuarioRemovido = await this.clsUsuarioArmazenados.removeUsuario(id)
 
         return{
             usuario: usuarioRemovido,
-            message: 'Usuario removido com Sucesso :S'
+            message: 'Usuario removido com Sucesso :S',
+            status:200
         }
     }
 
@@ -98,7 +101,8 @@ export class UsuarioController {
         const usuario = await this.clsUsuarioArmazenados.atualizaUsuario(id,AlteraFotoUsuarioDTO)
 
         return{
-            usuario: usuario            
+            usuario: usuario,
+            status:200
         }
     }
 }
