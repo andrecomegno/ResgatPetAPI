@@ -1,15 +1,18 @@
 import { Injectable } from "@nestjs/common";
-import { UsuarioEntity } from "./usuario.entity";
+import { Usuario } from "./usuario.entity";
 
 @Injectable()
 export class UsuarioArmazenados{
-    #usuario: UsuarioEntity[] = [];  
+    listar() {
+        throw new Error('Method not implemented.');
+    }
+    #usuario: Usuario[] = [];  
 
-    AdicionarUsuario(usuario: UsuarioEntity){
+    AdicionarUsuario(usuario: Usuario){
         this.#usuario.push(usuario);
     }
 
-    atualizaUsuario(id: string, dadosAtualizacao: Partial<UsuarioEntity>){
+    atualizaUsuario(id: string, dadosAtualizacao: Partial<Usuario>){
         const usuarios = this.buscaPorID(id);
 
         Object.entries(dadosAtualizacao).forEach(
@@ -18,7 +21,7 @@ export class UsuarioArmazenados{
                     return
                 }
                 else if(chave == 'senha'){
-                    usuarios.trocaSenha(valor);
+                    // usuarios.trocaSenha(valor);
                     return;
                 }
                 usuarios[chave] = valor;
@@ -30,31 +33,31 @@ export class UsuarioArmazenados{
 
     validaEmail(email: string) {
         const possivelUsuario = this.#usuario.find(
-          (usuario) => usuario.email === email,
+          (usuario) => usuario.EMAIL === email,
         );
         return possivelUsuario !== undefined;
       }
 
     buscarPorEmail(email: string){
         const possivelUsuario = this.#usuario.find(
-            usuarios => usuarios.email === email
+            usuarios => usuarios.EMAIL === email
         );
         return possivelUsuario;
     }
 
     validarLogin(email:string, senha:string){
-        const usuario = this.buscarPorEmail(email);
-        if(usuario)
-            return [usuario,usuario.login(senha)];
-        else
-            return [null, false]
+        // const usuario = this.buscarPorEmail(email);
+        // if(usuario)
+        //     return [usuario,usuario.login(senha)];
+        // else
+        //     return [null, false]
     }
 
     async removeUsuario(id: string){
         const usuarios = this.buscaPorID(id);
 
         this.#usuario = this.#usuario.filter(
-            usuarioSalvo => usuarioSalvo.id !== id
+            usuarioSalvo => usuarioSalvo.ID !== id
         )
 
         return usuarios;
@@ -62,7 +65,7 @@ export class UsuarioArmazenados{
 
     private buscaPorID(id: string){
         const possivelUsuarios = this.#usuario.find(
-            usuarioSalvo => usuarioSalvo.id === id
+            usuarioSalvo => usuarioSalvo.ID === id
         )
 
         if (!possivelUsuarios){

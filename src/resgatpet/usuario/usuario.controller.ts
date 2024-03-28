@@ -1,33 +1,32 @@
 import { Controller, Get, Post, Body, Param, Delete, Put } from '@nestjs/common';
 import { AtualizarUsuarioDTO } from '../dto/usuario/atualizarUsuario.dto';
 import { UsuarioDTO } from '../dto/usuario/usuario.dto';
-import { UsuarioArmazenados } from './usuario.dm';
 import { ListaUsuarioDTO } from '../dto/usuario/listaUsuario.dto';
-import { UsuarioEntity } from './usuario.entity';
-import { v4 as uuid } from 'uuid'
 import { LoginUsuarioDTO } from '../dto/usuario/loginUsuario.dto';
 import { ApiCreatedResponse, ApiResponse, ApiTags } from '@nestjs/swagger';
+import { UsuarioService } from './usuario.service';
+import { RetornoCadastroDTO } from '../dto/retorno.dto';
 
 @ApiTags('usuario')
-@Controller('usuarios')
+@Controller('/usuarios')
 export class UsuarioController {
 
-    constructor(private clsUsuarioArmazenados: UsuarioArmazenados){}
+    constructor(private clsUsuarioArmazenados: UsuarioService){}
 
     @ApiResponse({ status: 200, description: 'Retorna os usuários cadastrados.'})
     @Get()
     async RetornoUsuarios(){
-        const usuarioListados = await this.clsUsuarioArmazenados.Usuarios;
+        const usuarioListados = await this.clsUsuarioArmazenados.listar();
         const listaRetorno = usuarioListados.map(
             usuario => new ListaUsuarioDTO(
-                usuario.id,
-                usuario.nome,
-                usuario.cpf_cnpj,
-                usuario.telefone,
-                usuario.email,
-                usuario.senha,
-                usuario.foto,
-                usuario.level
+                usuario.ID,
+                usuario.NOME,
+                usuario.CPF_CNPJ,
+                usuario.TELEFONE,
+                usuario.EMAIL,
+                usuario.SENHA,
+                usuario.FOTO,
+                usuario.LEVEL
             )
         );
         
@@ -36,26 +35,8 @@ export class UsuarioController {
 
     @ApiCreatedResponse({ status: 200, description: 'Retorna que houve sucesso ao cadastrar o usuário e retorna o ID criado.'})
     @Post()
-    async CriaUsuario(@Body() dadosUsuario: UsuarioDTO){
-        var usuario = new UsuarioEntity(
-            uuid(),
-            dadosUsuario.nome,
-            dadosUsuario.cpf_cnpj,
-            dadosUsuario.telefone,
-            dadosUsuario.email,
-            dadosUsuario.senha,
-            dadosUsuario.foto,
-            dadosUsuario.level
-        )        
-            
-        this.clsUsuarioArmazenados.AdicionarUsuario(usuario);        
-        var retorno={
-            id: usuario.id,
-            message:'Usuario Criado =)',
-            status:200
-        }
-        
-        return retorno
+    async CriaUsuario(@Body() dadosUsuario: UsuarioDTO):Promise<RetornoCadastroDTO>{
+        return this.clsUsuarioArmazenados.inserir(dadosUsuario)
     }
 
     @ApiResponse({ status: 200, description: 'Retorna se houve sucesso no login. O retorno "Status" diz se houve sucesso ou não.'})
@@ -73,7 +54,7 @@ export class UsuarioController {
     @ApiResponse({ status: 500, description: 'Retorna que o usuário não foi encontrado.'})
     @Put('/:id')
     async atualizaUsuario(@Param('id') id: string, @Body() novosDados: AtualizarUsuarioDTO){
-        const usuarioAtualizado = await this.clsUsuarioArmazenados.atualizaUsuario(id, novosDados)
+        const usuarioAtualizado = await this.clsUsuarioArmazenados.alterar(id, novosDados)
 
         return{
             usuario: usuarioAtualizado,
@@ -85,7 +66,7 @@ export class UsuarioController {
     @ApiCreatedResponse({ status: 200, description: 'Retorna que houve sucesso ao remover o usuário.'})
     @Delete('/:id')
     async removeUsuario(@Param('id') id: string){
-        const usuarioRemovido = await this.clsUsuarioArmazenados.removeUsuario(id)
+        const usuarioRemovido = await this.clsUsuarioArmazenados.remove(id)
 
         return{
             usuario: usuarioRemovido,
@@ -98,7 +79,7 @@ export class UsuarioController {
     @ApiResponse({ status: 500, description: 'Retorna que a foto não foi encontrado.'})
     @Post('/foto/:id')
     async atualizaFoto(@Param('id') id: string,@Body() AlteraFotoUsuarioDTO){
-        const usuario = await this.clsUsuarioArmazenados.atualizaUsuario(id,AlteraFotoUsuarioDTO)
+        const usuario = await this.clsUsuarioArmazenados.alterar(id,AlteraFotoUsuarioDTO)
 
         return{
             usuario: usuario,

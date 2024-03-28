@@ -1,34 +1,33 @@
-import * as bcrypt from 'bcrypt'
+import { Column, JoinColumn, ManyToOne, PrimaryColumn } from 'typeorm';
+import { Entity } from 'typeorm/decorator/entity/Entity';
 
-export class UsuarioEntity {
-    id: string;
-    nome: string;
-    cpf_cnpj: string;
-    telefone: string;
-    email: string;
-    senha: string;
-    foto: string;
-    level: string;
+@Entity()
+export class Usuario {
+    @PrimaryColumn()
+    ID: string;
+    
+    @Column({length: 255})
+    NOME: string;
 
-    constructor(id: string, nome: string, cpf_cnpj: string, telefone: string, email: string, senha: string, foto: string, level: string) {
-        const saltOrRounds = 10;
+    @Column({length: 255})
+    CPF_CNPJ: string;
 
-        this.id = id;
-        this.nome = nome;
-        this.cpf_cnpj = cpf_cnpj;
-        this.telefone = telefone;
-        this.email = email;
-        this.senha = bcrypt.hashSync(senha, saltOrRounds);
-        this.foto = foto;
-        this.level = level;
-    }
+    @Column({length: 255})
+    TELEFONE: string;
 
-    login(senha){
-        return bcrypt.compareSync(senha, this.senha);
-    }
+    @Column({length: 255})
+    EMAIL: string;
 
-    trocaSenha(senha){
-        const saltOrRounds = 10;
-        this.senha = bcrypt.hashSync(senha, saltOrRounds);
-    }
+    @Column({length: 255})
+    SENHA: string;
+
+    @Column({length: 255})
+    FOTO: string;
+
+    @Column({length: 255})
+    LEVEL: string;
+
+    // @ManyToOne(() => LOGIN)
+    // @JoinColumn({ name: 'IDLOGIN', referencedColumnName:'ID'})
+    // LOGIN: LOGIN;
 }
