@@ -11,7 +11,7 @@ export class UsuarioDTO {
         example: 'Roberto Silva',
         description: `O nome é usado para identificar o usuário, em telas, cadastros e outros.`,
     })
-    NOME: string;
+    NOMECOMPLETO: string;
 
     @IsString()
     @IsNotEmpty({message: " CPF ou CNPJ não pode ser vazio "})

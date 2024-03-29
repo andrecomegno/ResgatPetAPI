@@ -2,7 +2,6 @@ import { Controller, Get, Post, Body, Param, Delete, Put } from '@nestjs/common'
 import { AtualizarUsuarioDTO } from '../dto/usuario/atualizarUsuario.dto';
 import { UsuarioDTO } from '../dto/usuario/usuario.dto';
 import { ListaUsuarioDTO } from '../dto/usuario/listaUsuario.dto';
-import { LoginUsuarioDTO } from '../dto/usuario/loginUsuario.dto';
 import { ApiCreatedResponse, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { UsuarioService } from './usuario.service';
 import { RetornoCadastroDTO } from '../dto/retorno.dto';
@@ -20,13 +19,14 @@ export class UsuarioController {
         const listaRetorno = usuarioListados.map(
             usuario => new ListaUsuarioDTO(
                 usuario.ID,
-                usuario.NOME,
+                usuario.NOMECOMPLETO,
                 usuario.CPF_CNPJ,
                 usuario.TELEFONE,
                 usuario.EMAIL,
                 usuario.SENHA,
                 usuario.FOTO,
-                usuario.LEVEL
+                usuario.LEVEL,
+                usuario.IDLOGIN
             )
         );
         
@@ -42,7 +42,7 @@ export class UsuarioController {
     @ApiResponse({ status: 200, description: 'Retorna se houve sucesso no login. O retorno "Status" diz se houve sucesso ou não.'})
     @Post('/login')
     async Login(@Body() dadosUsuario: LoginUsuarioDTO){
-        var login = this.clsUsuarioArmazenados.validarLogin( dadosUsuario.email,dadosUsuario.senha)
+        var login = this.clsUsuarioArmazenados.validarLogin( dadosUsuario.EMAIL,dadosUsuario.SENHA)
         return{
             usuario: login[1] ? login[0] : null,
             status: login[1],

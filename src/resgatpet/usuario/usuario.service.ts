@@ -6,6 +6,7 @@ import { UsuarioDTO } from "../dto/usuario/usuario.dto";
 import { Usuario } from './usuario.entity'
 import { v4 as uuid } from 'uuid'
 import { AtualizarUsuarioDTO } from "../dto/usuario/atualizarUsuario.dto";
+import { Login } from "../login/login.entity";
 
 @Injectable()
 export class UsuarioService {
@@ -14,6 +15,10 @@ export class UsuarioService {
     constructor(
         @Inject('USUARIO_REPOSITORY')
         private usuarioRepository: Repository<Usuario>,
+        private readonly usuarioService: Usuario,
+        @Inject('LOGIN_REPOSITORY')
+        private loginRepository: Repository<Login>,  
+        private readonly loginService: Login
     ) { }
 
     async listar(): Promise<ListaUsuarioDTO[]> {
@@ -21,28 +26,29 @@ export class UsuarioService {
         return usuarioListadas.map(
             usuario => new ListaUsuarioDTO(
                 usuario.ID,
-                usuario.NOME,
+                usuario.NOMECOMPLETO,
                 usuario.CPF_CNPJ,
                 usuario.TELEFONE,
                 usuario.EMAIL,
                 usuario.SENHA,
                 usuario.FOTO,
-                usuario.LEVEL
+                usuario.LEVEL,
+                usuario.LOGIN
             ))
     }
 
     async inserir(dados: UsuarioDTO): Promise<RetornoCadastroDTO> {
         let usuario = new Usuario();
-        // let filme = await this.filmeService.inserir(dados.filme);
+        // let login = await this.usuarioService.inserir(dados.filme);
         usuario.ID = uuid();
-        usuario.NOME = dados.NOME;
+        usuario.NOMECOMPLETO = dados.NOMECOMPLETO;
         usuario.CPF_CNPJ = dados.CPF_CNPJ;
         usuario.TELEFONE = dados.TELEFONE
         usuario.EMAIL = dados.EMAIL
         usuario.SENHA = dados.SENHA
         usuario.FOTO = dados.FOTO
         usuario.LEVEL = dados.LEVEL
-        // usuario.FILME = await this.filmeService.localizarID(filme.id)
+        // usuario.LOGIN = await this.loginService.localizarID(login.id)
 
         return this.usuarioRepository.save(usuario)
             .then((result) => {
@@ -113,12 +119,16 @@ export class UsuarioService {
             });
     }
 
-    async validarLogin(email: string, senha: string) {
+    async validarLogin(email: string, senha: string): Promise<RetornoObjDTO> {
         const usuario = this.buscarPorEmail(email);
-        // if (usuario)
-        //     return [usuario, usuario.login(senha)];
-        // else
-        //     return [null, false]
+        var objRetorno;
+        if (usuario)
+            objRetorno [usuario, usuario.login(senha)];
+
+            return <RetornoObjDTO>{
+                message: objRetorno[1] ? 'Login Efetuado0' : 'Usuario ou senha Ivalidos',
+                return: objRetorno[1] ? objRetorno[0] : null
+            }
     }
 
     async validaEmail(email: string) {

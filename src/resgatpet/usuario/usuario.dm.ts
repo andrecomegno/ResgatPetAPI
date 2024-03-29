@@ -3,9 +3,6 @@ import { Usuario } from "./usuario.entity";
 
 @Injectable()
 export class UsuarioArmazenados{
-    listar() {
-        throw new Error('Method not implemented.');
-    }
     #usuario: Usuario[] = [];  
 
     AdicionarUsuario(usuario: Usuario){

@@ -1,7 +1,7 @@
 import { ApiProperty } from "@nestjs/swagger";
 import { IsEmail, IsNotEmpty, MinLength } from "class-validator";
 
-export class LoginUsuarioDTO{
+export class LoginDTO{
 
     @IsNotEmpty({message: " Email não pode ser vazio "})
     @IsEmail(undefined, {message:" O email é invalido "})
@@ -9,7 +9,7 @@ export class LoginUsuarioDTO{
         example: 'juvenal_12345@gmail.com',
         description: `O email é utilizado para o login e identificação do usuário. Deve ser único.`,
     })
-    email: string;
+    EMAIL: string;
 
     @IsNotEmpty({message: " Senha Não pode ser vazio "})
     @MinLength(6,{message: " Senha precisa ter pelo menos 6 digitos "})
@@ -17,6 +17,6 @@ export class LoginUsuarioDTO{
         example: '#@afgtu45',
         description: `A senha deve conter pelo menos 6 caracteres, contar com letras minusculas e maiusculas, numeros e caracteres especiais.`,
     })
-    senha:string;
+    SENHA:string;
 
 }
