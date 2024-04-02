@@ -1,4 +1,5 @@
 import { Injectable } from "@nestjs/common";
+import { RetornoObjDTO } from "../dto/retorno.dto";
 import { Usuario } from "./usuario.entity";
 
 @Injectable()
@@ -18,7 +19,7 @@ export class UsuarioArmazenados{
                     return
                 }
                 else if(chave == 'senha'){
-                    // usuarios.trocaSenha(valor);
+                    usuarios.trocaSenha(valor);
                     return;
                 }
                 usuarios[chave] = valor;
@@ -30,7 +31,7 @@ export class UsuarioArmazenados{
 
     validaEmail(email: string) {
         const possivelUsuario = this.#usuario.find(
-          (usuario) => usuario.EMAIL === email,
+            (usuario) => usuario.EMAIL === email,
         );
         return possivelUsuario !== undefined;
       }
@@ -42,13 +43,17 @@ export class UsuarioArmazenados{
         return possivelUsuario;
     }
 
-    validarLogin(email:string, senha:string){
-        // const usuario = this.buscarPorEmail(email);
-        // if(usuario)
-        //     return [usuario,usuario.login(senha)];
-        // else
-        //     return [null, false]
-    }
+    // async validarLogin(email: string, senha: string): Promise<RetornoObjDTO> {
+    //     const usuario = this.buscarPorEmail(email);
+    //     var objRetorno;
+    //     if (usuario)
+    //         objRetorno[usuario, usuario.login(senha)];
+
+    //     return <RetornoObjDTO>{
+    //         message: objRetorno[1] ? 'Login Efetuado0' : 'Usuario ou senha Ivalidos',
+    //         return: objRetorno[1] ? objRetorno[0] : null
+    //     }
+    // }
 
     async removeUsuario(id: string){
         const usuarios = this.buscaPorID(id);

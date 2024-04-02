@@ -6,40 +6,35 @@ import { UsuarioDTO } from "../dto/usuario/usuario.dto";
 import { Usuario } from './usuario.entity'
 import { v4 as uuid } from 'uuid'
 import { AtualizarUsuarioDTO } from "../dto/usuario/atualizarUsuario.dto";
-import { Login } from "../login/login.entity";
 
 @Injectable()
 export class UsuarioService {
-    #usuario: Usuario[] = [];
+    // #usuario: Usuario[] = [];
 
     constructor(
         @Inject('USUARIO_REPOSITORY')
         private usuarioRepository: Repository<Usuario>,
         private readonly usuarioService: Usuario,
-        @Inject('LOGIN_REPOSITORY')
-        private loginRepository: Repository<Login>,  
-        private readonly loginService: Login
     ) { }
 
     async listar(): Promise<ListaUsuarioDTO[]> {
-        var usuarioListadas = await this.usuarioRepository.find();
-        return usuarioListadas.map(
-            usuario => new ListaUsuarioDTO(
-                usuario.ID,
-                usuario.NOMECOMPLETO,
-                usuario.CPF_CNPJ,
-                usuario.TELEFONE,
-                usuario.EMAIL,
-                usuario.SENHA,
-                usuario.FOTO,
-                usuario.LEVEL,
-                usuario.LOGIN
-            ))
+        return this.usuarioRepository.find();
+        // var usuarioListadas = await this.usuarioRepository.find();
+        // return usuarioListadas.map(
+        //     usuario => new ListaUsuarioDTO(
+        //         usuario.ID,
+        //         usuario.NOMECOMPLETO,
+        //         usuario.CPF_CNPJ,
+        //         usuario.TELEFONE,
+        //         usuario.EMAIL,
+        //         usuario.SENHA,
+        //         usuario.FOTO,
+        //         usuario.LEVEL
+        //     ))
     }
 
     async inserir(dados: UsuarioDTO): Promise<RetornoCadastroDTO> {
         let usuario = new Usuario();
-        // let login = await this.usuarioService.inserir(dados.filme);
         usuario.ID = uuid();
         usuario.NOMECOMPLETO = dados.NOMECOMPLETO;
         usuario.CPF_CNPJ = dados.CPF_CNPJ;
@@ -48,7 +43,6 @@ export class UsuarioService {
         usuario.SENHA = dados.SENHA
         usuario.FOTO = dados.FOTO
         usuario.LEVEL = dados.LEVEL
-        // usuario.LOGIN = await this.loginService.localizarID(login.id)
 
         return this.usuarioRepository.save(usuario)
             .then((result) => {
@@ -123,25 +117,11 @@ export class UsuarioService {
         const usuario = this.buscarPorEmail(email);
         var objRetorno;
         if (usuario)
-            objRetorno [usuario, usuario.login(senha)];
+            objRetorno[usuario, usuario.login(senha)];
 
-            return <RetornoObjDTO>{
-                message: objRetorno[1] ? 'Login Efetuado0' : 'Usuario ou senha Ivalidos',
-                return: objRetorno[1] ? objRetorno[0] : null
-            }
-    }
-
-    async validaEmail(email: string) {
-        const possivelUsuario = this.#usuario.find(
-            (usuario) => usuario.EMAIL === email,
-        );
-        return possivelUsuario !== undefined;
-    }
-
-    async buscarPorEmail(email: string) {
-        const possivelUsuario = this.#usuario.find(
-            usuarios => usuarios.EMAIL === email
-        );
-        return possivelUsuario;
+        return <RetornoObjDTO>{
+            message: objRetorno[1] ? 'Login Efetuado0' : 'Usuario ou senha Ivalidos',
+            return: objRetorno[1] ? objRetorno[0] : null
+        }
     }
 }
