@@ -9,38 +9,24 @@ import { AtualizarUsuarioDTO } from "../dto/usuario/atualizarUsuario.dto";
 
 @Injectable()
 export class UsuarioService {
-    // #usuario: Usuario[] = [];
 
     constructor(
         @Inject('USUARIO_REPOSITORY')
-        private usuarioRepository: Repository<Usuario>,
-        private readonly usuarioService: Usuario,
+        private usuarioRepository: Repository<Usuario>
     ) { }
 
     async listar(): Promise<ListaUsuarioDTO[]> {
         return this.usuarioRepository.find();
-        // var usuarioListadas = await this.usuarioRepository.find();
-        // return usuarioListadas.map(
-        //     usuario => new ListaUsuarioDTO(
-        //         usuario.ID,
-        //         usuario.NOMECOMPLETO,
-        //         usuario.CPF_CNPJ,
-        //         usuario.TELEFONE,
-        //         usuario.EMAIL,
-        //         usuario.SENHA,
-        //         usuario.FOTO,
-        //         usuario.LEVEL
-        //     ))
     }
 
     async inserir(dados: UsuarioDTO): Promise<RetornoCadastroDTO> {
         let usuario = new Usuario();
-        usuario.ID = uuid();
-        usuario.NOMECOMPLETO = dados.NOMECOMPLETO;
-        usuario.CPF_CNPJ = dados.CPF_CNPJ;
+        usuario.ID = uuid()
+        usuario.NOMECOMPLETO = dados.NOMECOMPLETO
+        usuario.CPF_CNPJ = dados.CPF_CNPJ
         usuario.TELEFONE = dados.TELEFONE
         usuario.EMAIL = dados.EMAIL
-        usuario.SENHA = dados.SENHA
+        usuario.trocaSenha(dados.SENHA)
         usuario.FOTO = dados.FOTO
         usuario.LEVEL = dados.LEVEL
 
@@ -94,6 +80,11 @@ export class UsuarioService {
                     return;
                 }
 
+                if (chave === 'SENHA') {
+                    usuario.trocaSenha(chave)
+                    return;
+                }
+
                 usuario[chave] = valor;
             }
         )
@@ -113,15 +104,33 @@ export class UsuarioService {
             });
     }
 
-    async validarLogin(email: string, senha: string): Promise<RetornoObjDTO> {
-        const usuario = this.buscarPorEmail(email);
+    async validarLogin(EMAIL: string, SENHA: string): Promise<RetornoObjDTO> {
+        const usuario = await this.buscarPorEmail(EMAIL);
+
         var objRetorno;
         if (usuario)
-            objRetorno[usuario, usuario.login(senha)];
+            objRetorno = [usuario, usuario.login(SENHA)];
 
         return <RetornoObjDTO>{
             message: objRetorno[1] ? 'Login Efetuado0' : 'Usuario ou senha Ivalidos',
             return: objRetorno[1] ? objRetorno[0] : null
         }
+    }
+
+    async validaEmail(EMAIL: string) {
+        const possivelUsuario = await this.usuarioRepository.findOne({
+            where: {
+                EMAIL,
+            },
+        });
+        return (possivelUsuario !== null)
+    }
+
+    async buscarPorEmail(EMAIL: string): Promise<Usuario> {
+        return this.usuarioRepository.findOne({
+            where: {
+                EMAIL,
+            },
+        });
     }
 }

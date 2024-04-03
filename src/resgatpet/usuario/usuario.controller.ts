@@ -4,18 +4,19 @@ import { UsuarioDTO } from '../dto/usuario/usuario.dto';
 import { ListaUsuarioDTO } from '../dto/usuario/listaUsuario.dto';
 import { ApiCreatedResponse, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { UsuarioService } from './usuario.service';
-import { RetornoCadastroDTO } from '../dto/retorno.dto';
+import { RetornoCadastroDTO, RetornoObjDTO } from '../dto/retorno.dto';
+import { LoginUsuarioDTO } from '../dto/usuario/loginUsuario.dto';
 
 @ApiTags('usuario')
-@Controller('/usuarios')
+@Controller('usuarios')
 export class UsuarioController {
 
-    constructor(private clsUsuarioArmazenados: UsuarioService){}
+    constructor(private usuarioService: UsuarioService){}
 
     @ApiResponse({ status: 200, description: 'Retorna os usuários cadastrados.'})
     @Get()
     async RetornoUsuarios(){
-        const usuarioListados = await this.clsUsuarioArmazenados.listar();
+        const usuarioListados = await this.usuarioService.listar();
         const listaRetorno = usuarioListados.map(
             usuario => new ListaUsuarioDTO(
                 usuario.ID,
@@ -35,25 +36,20 @@ export class UsuarioController {
     @ApiCreatedResponse({ status: 200, description: 'Retorna que houve sucesso ao cadastrar o usuário e retorna o ID criado.'})
     @Post()
     async CriaUsuario(@Body() dadosUsuario: UsuarioDTO):Promise<RetornoCadastroDTO>{
-        return this.clsUsuarioArmazenados.inserir(dadosUsuario)
+        return this.usuarioService.inserir(dadosUsuario)
     }
 
     @ApiResponse({ status: 200, description: 'Retorna se houve sucesso no login. O retorno "Status" diz se houve sucesso ou não.'})
     @Post('/login')
-    async Login(@Body() dadosUsuario: UsuarioDTO){
-        var login = this.clsUsuarioArmazenados.validarLogin( dadosUsuario.EMAIL,dadosUsuario.SENHA)
-        return{
-            usuario: login[1] ? login[0] : null,
-            status: login[1],
-            message: login[1] ? "Login Efetuado" : "Usuario ou senha invalidos !"
-        }
+    async Login(@Body() dadosUsuario: LoginUsuarioDTO): Promise<RetornoObjDTO>{
+        return this.usuarioService.validarLogin( dadosUsuario.EMAIL,dadosUsuario.SENHA)
     }
 
     @ApiResponse({ status: 200, description: 'Retorna que houve sucesso ao alterar o usuário.'})
     @ApiResponse({ status: 500, description: 'Retorna que o usuário não foi encontrado.'})
     @Put('/:id')
     async atualizaUsuario(@Param('id') id: string, @Body() novosDados: AtualizarUsuarioDTO){
-        const usuarioAtualizado = await this.clsUsuarioArmazenados.alterar(id, novosDados)
+        const usuarioAtualizado = await this.usuarioService.alterar(id, novosDados)
 
         return{
             usuario: usuarioAtualizado,
@@ -65,7 +61,7 @@ export class UsuarioController {
     @ApiCreatedResponse({ status: 200, description: 'Retorna que houve sucesso ao remover o usuário.'})
     @Delete('/:id')
     async removeUsuario(@Param('id') id: string){
-        const usuarioRemovido = await this.clsUsuarioArmazenados.remove(id)
+        const usuarioRemovido = await this.usuarioService.remove(id)
 
         return{
             usuario: usuarioRemovido,
@@ -78,7 +74,7 @@ export class UsuarioController {
     @ApiResponse({ status: 500, description: 'Retorna que a foto não foi encontrado.'})
     @Post('/foto/:id')
     async atualizaFoto(@Param('id') id: string,@Body() AlteraFotoUsuarioDTO){
-        const usuario = await this.clsUsuarioArmazenados.alterar(id,AlteraFotoUsuarioDTO)
+        const usuario = await this.usuarioService.alterar(id,AlteraFotoUsuarioDTO)
 
         return{
             usuario: usuario,

@@ -1,5 +1,6 @@
 import { Column, PrimaryColumn } from 'typeorm';
 import { Entity } from 'typeorm/decorator/entity/Entity';
+import * as bcrypt from 'bcrypt'
 
 @Entity()
 export class Usuario {
@@ -26,4 +27,13 @@ export class Usuario {
 
     @Column({length: 255})
     LEVEL: string;
+
+    trocaSenha(SENHA){
+        const saltOrRounds=10
+        this.SENHA = bcrypt.hashSync(SENHA,saltOrRounds)
+    }
+    
+    login(SENHA){
+        return bcrypt.compareSync(SENHA,this.SENHA)
+    }
 }

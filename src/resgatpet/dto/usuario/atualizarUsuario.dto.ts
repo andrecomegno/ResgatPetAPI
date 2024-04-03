@@ -1,11 +1,12 @@
 import { ApiProperty } from "@nestjs/swagger";
-import { IsNotEmpty, IsString, MinLength } from "class-validator";
+import { IsNotEmpty, IsOptional, IsString, MinLength } from "class-validator";
 import { EmailUnico } from "../../validacao/validacaoEmail";
 import { SenhaForte } from "../../validacao/validacaoSenha";
 
 export class AtualizarUsuarioDTO {
     
     @IsString()
+    @IsOptional()
     @IsNotEmpty({message: "Nome não pode ser vazio"})
     @ApiProperty({
         example: 'Juvenal Oliveira da Silva de Souza',
@@ -14,6 +15,7 @@ export class AtualizarUsuarioDTO {
     NOMECOMPLETO: string;
 
     @IsString()
+    @IsOptional()
     @IsNotEmpty({message: "CPF ou CNPJ não pode ser vazio"})
     @ApiProperty({
         example: '25558878946',
@@ -22,6 +24,7 @@ export class AtualizarUsuarioDTO {
     CPF_CNPJ: string;
 
     @IsString()
+    @IsOptional()
     @IsNotEmpty({message: "Telefone não pode ser vazio"})
     @ApiProperty({
         example: '14985554700',
@@ -30,6 +33,7 @@ export class AtualizarUsuarioDTO {
     TELEFONE: string;
 
     @IsString()
+    @IsOptional()
     @IsNotEmpty({message: "Email não pode ser vazio"})
     @EmailUnico({ message: 'O email informado já existe' })
     @ApiProperty({
@@ -39,6 +43,7 @@ export class AtualizarUsuarioDTO {
     EMAIL: string;
     
     @IsString()
+    @IsOptional()
     @SenhaForte({message: "Senha Muito Fraca"})  
     @IsNotEmpty({message: "Senha não pode ser vazio"})
     @MinLength(6,{message: "Senha precisa ter pelo menos 6 digitos"})
