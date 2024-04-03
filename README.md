@@ -56,8 +56,8 @@ POST http://localhost:3005/usuarios/login
 Selecione Body, raw, json
 
 {
-  "email": "juvenal_12345@gmail.com",
-  "senha": "#@afgtu45"
+  "EMAIL": "juvenal_12345@gmail.com",
+  "SENHA": "#@afgtu45"
 }
 ```
 ```bash
@@ -66,11 +66,12 @@ POST http://localhost:3005/usuarios
 Selecione Body, raw, json
 
 {
-  "nome": "Juvenal Oliveira da Silva de Souza",
-  "cpf_cnpj": "25558878946",
-  "telefone": "14985554700",
-  "email": "juvenal_12345@gmail.com",
-  "senha": "#@afgtu45"
+  "NOMECOMPLETO": "Juvenal Oliveira da Silva de Souza",
+  "CPF_CNPJ": "25558878946",
+  "TELEFONE": "14985554700",
+  "EMAIL": "juvenal_12345@gmail.com",
+  "SENHA": "#@afgtu45",
+  "LEVEL": "1"
 }
 ```
 ```bash
@@ -79,12 +80,13 @@ POST http://localhost:3005/usuarios/foto/{"url da foto"}
 Selecione Body, raw, json
 
 {
-  "nome": "Juvenal Oliveira da Silva de Souza",
-  "cpf_cnpj": "25558878946",
-  "telefone": "14985554700",
-  "email": "juvenal_12345@gmail.com",
-  "senha": "#@afgtu45"
-  "foto": "asdasdaslo-4d06e95a-4ee7-4195-b48e-6cc05a264de8.png"
+  "NOMECOMPLETO": "Juvenal Oliveira da Silva de Souza",
+  "CPF_CNPJ": "25558878946",
+  "TELEFONE": "14985554700",
+  "EMAIL": "juvenal_12345@gmail.com",
+  "SENHA": "#@afgtu45",
+  "LEVEL": "1"
+  "FOTO": "asdasdaslo-4d06e95a-4ee7-4195-b48e-6cc05a264de8.png"
 }
 ```
 ```bash
@@ -105,11 +107,11 @@ Selecione Params
 ```bash
 # exemplo json
 {
-  "nome": "Juvenal Oliveira da Silva de Souza",
-  "cpf_cnpj": "25558878946",
-  "telefone": "14985554700",
-  "email": "juvenal_12345@gmail.com",
-  "senha": "#@afgtu45"
+  "NOMECOMPLETO": "Juvenal Oliveira da Silva de Souza",
+  "CPF_CNPJ": "25558878946",
+  "TELEFONE": "14985554700",
+  "EMAIL": "juvenal_12345@gmail.com",
+  "SENHA": "#@afgtu45"
 }
 ```
 ### Formulário
@@ -120,14 +122,14 @@ POST http://localhost:3005/formulario
 Selecione Body, raw, json
 
 {
-  "endereco": "Rua Lopes 1734",
-  "cidade": "Bauru",
-  "sexo": "Macho",
-  "raca": "Poodle",
-  "cor": "Branco",
-  "saude": "Ferido",
-  "acessorio": "Coleira",  
-  "usuario": "Juvenal Oliveira da Silva de Souza"
+  "ENDERECO": "Rua Lopes 1734",
+  "CIDADE": "Bauru",
+  "SEXO": "Macho",
+  "RACA": "Poodle",
+  "COR": "Branco",
+  "SAUDE": "Ferido",
+  "ACESSORIO": "Coleira",  
+  "USUARIO": "Juvenal Oliveira da Silva de Souza"
 }
 ```
 ```bash
@@ -136,15 +138,15 @@ POST http://localhost:3005/formulario/foto/{"url da foto"}
 Selecione Body, raw, json
 
 {
-  "endereco": "Rua Lopes 1734",
-  "cidade": "Bauru",
-  "sexo": "Macho",
-  "raca": "Poodle",
-  "cor": "Branco",
-  "saude": "Ferido",
-  "acessorio": "Coleira",  
-  "usuario": "Juvenal Oliveira da Silva de Souza"
-  "fotoPet": "asdasdaslo-4d06e95a-4ee7-4195-b48e-6cc05a264de8.png"
+  "ENDERECO": "Rua Lopes 1734",
+  "CIDADE": "Bauru",
+  "SEXO": "Macho",
+  "RACA": "Poodle",
+  "COR": "Branco",
+  "SAUDE": "Ferido",
+  "ACESSORIO": "Coleira", 
+  "USUARIO": "Juvenal Oliveira da Silva de Souza"
+  "FOTOPET": "asdasdaslo-4d06e95a-4ee7-4195-b48e-6cc05a264de8.png"
 }
 ```
 ```bash
@@ -165,14 +167,14 @@ Selecione Params
 ```bash
 # exemplo json
 {
-  "endereco": "Rua Lopes 1734",
-  "cidade": "Bauru",
-  "sexo": "Macho",
-  "raca": "Poodle",
-  "cor": "Branco",
-  "saude": "Ferido",
-  "acessorio": "Coleira",  
-  "usuario": "Juvenal Oliveira da Silva de Souza"
+  "ENDERECO": "Rua Lopes 1734",
+  "CIDADE": "Bauru",
+  "SEXO": "Macho",
+  "RACA": "Poodle",
+  "COR": "Branco",
+  "SAUDE": "Ferido",
+  "ACESSORIO": "Coleira",  
+  "USUARIO": "Juvenal Oliveira da Silva de Souza"
 }
 ```
 ## UML
