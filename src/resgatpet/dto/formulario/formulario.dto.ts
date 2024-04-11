@@ -10,7 +10,7 @@ export class FormularioDTO {
         example: 'foto.jpg',
         description: `A foto será enviada para a ONG com o objetivo de identificar o animal.`,
     })
-    fotoPet: string;
+    IMAGEM: string;
 
     @IsString()
     @IsNotEmpty({message: "Endereço não pode ser vazio "})
@@ -18,7 +18,7 @@ export class FormularioDTO {
         example: 'Rua Lopes 1734',
         description: `esse endereço deve ser o mais claro possível para que seja facilitada a busca ao animal.`,
     })
-    endereco: string;
+    ENDERECO: string;
 
     @IsString()
     @IsNotEmpty({message: "Cidade não pode ser vazio "})
@@ -26,7 +26,7 @@ export class FormularioDTO {
         example: 'Bauru',
         description: `A cidade nos auxilia a saber quais as ONGs mais próximas.`,
     })
-    cidade: string;
+    CIDADE: string;
 
     @IsString()
     @IsNotEmpty({message: "Raça não pode ser vazio "})
@@ -34,7 +34,7 @@ export class FormularioDTO {
         example: 'Poodle',
         description: `No caso de engano devemos saber a raça do cão em questão.`,
     })
-    raca: string;
+    RACA: string;
 
     @IsString()
     @IsNotEmpty({message: "Sexo não pode ser vazio "})
@@ -42,7 +42,7 @@ export class FormularioDTO {
         example: 'Macho',
         description: `Mais um termo para facilitar a descoberta do cachorro`,
     })
-    sexo: string;
+    SEXO: string;
 
     @IsString()
     @IsNotEmpty({message: "Cor não pode ser vazio "})
@@ -50,7 +50,7 @@ export class FormularioDTO {
         example: 'Branco',
         description: `Informar a cor do cachorro perdido.`,
     })
-    cor: string;
+    COR: string;
 
     @IsString()
     @IsNotEmpty({message: "Saude não pode ser vazio "})
@@ -58,7 +58,7 @@ export class FormularioDTO {
         example: 'Ferido',
         description: `Nos mostre o estado do cachorro para urgência.`,
     })
-    saude: string;
+    SAUDE: string;
 
     @IsString()
     @IsNotEmpty({message: "Acessorio não pode ser vazio "})
@@ -66,7 +66,7 @@ export class FormularioDTO {
         example: 'Coleira',
         description: `O cachorro pode ou não conter um acessório, então nos informe caso tenha.`,
     })
-    acessorio: string;
+    ACESSORIO: string;
 
     @IsString()
     @IsNotEmpty({message: "Usuario não pode ser vazio "})
@@ -74,5 +74,5 @@ export class FormularioDTO {
         example: 'Juvenal Oliveira da Silva de Souza',
         description: `Usuario que encontrou o Pet.`,
     })
-    usuario: string;
+    USUARIO: string;
 }

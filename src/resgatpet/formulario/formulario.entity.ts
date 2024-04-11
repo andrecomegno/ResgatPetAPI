@@ -1,25 +1,35 @@
-export class FormularioEntity {
-    id: string;
-    fotoPet: string;
-    endereco: string;
-    cidade: string;
-    raca: string;
-    sexo: string;    
-    cor: string;
-    saude: string;
-    acessorio: string;
-    usuario: string;    
+import { Column, PrimaryColumn } from 'typeorm';
+import { Entity } from 'typeorm/decorator/entity/Entity';
 
-    constructor(id: string, fotoPet: string, endereco: string, cidade: string, raca: string, sexo: string, cor: string, saude: string, acessorio: string, usuario: string ) {
-        this.id = id;
-        this.fotoPet = fotoPet;
-        this.endereco = endereco;
-        this.cidade = cidade;
-        this.raca = raca;
-        this.sexo = sexo;        
-        this.cor = cor;
-        this.saude = saude;
-        this.acessorio = acessorio;
-        this.usuario = usuario;
-    }
+@Entity()
+export class Formulario {
+    @PrimaryColumn()
+    ID: string;
+    
+    @Column({length: 255})
+    IMAGEM: string;
+
+    @Column({length: 255})
+    ENDERECO: string;
+
+    @Column({length: 255})
+    CIDADE: string;
+
+    @Column({length: 255})
+    RACA: string;
+
+    @Column({length: 255})
+    SEXO: string;
+
+    @Column({length: 255})
+    COR: string;
+
+    @Column({length: 255})
+    SAUDE: string;
+
+    @Column({length: 255})
+    ACESSORIO: string;
+
+    @Column({length: 255})
+    USUARIO: string;
 }
