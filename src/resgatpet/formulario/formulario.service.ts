@@ -90,7 +90,7 @@ export class FormularioService {
             .then((result) => {
                 return <RetornoCadastroDTO>{
                     id: formulario.ID,
-                    message: "Usuario alterado !"
+                    message: "Formulario alterado !"
                 };
             })
             .catch((error) => {
