@@ -1,10 +1,6 @@
-import { v4 as uuid } from 'uuid'
 import { Controller, Get, Post, Body, Param, Delete, Put } from '@nestjs/common';
 import { ListaFormularioDTO } from '../dto/formulario/listaFormulario.dto';
-import { FormularioArmazenados } from './formulario.dm';
 import { FormularioDTO } from '../dto/formulario/formulario.dto';
-import { Formulario } from './formulario.entity';
-import { AtualizarFormularioDTO } from '../dto/formulario/atualizarFormulario.dto';
 import { ApiCreatedResponse, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { FormularioService } from './formulario.service';
 import { RetornoCadastroDTO } from '../dto/retorno.dto';

@@ -1,15 +1,15 @@
 import { Injectable } from "@nestjs/common";
-import { FormularioEntity } from "./formulario.entity";
+import { Formulario } from "./formulario.entity";
 
 @Injectable()
 export class FormularioArmazenados{
-    #formularios: FormularioEntity[] = [];  
+    #formularios: Formulario[] = [];  
 
-    AdicionarFormulario(formulario: FormularioEntity){
+    AdicionarFormulario(formulario: Formulario){
         this.#formularios.push(formulario);
     }
 
-    atualizaFormulario(id: string, dadosAtualizacao: Partial<FormularioEntity>){
+    atualizaFormulario(id: string, dadosAtualizacao: Partial<Formulario>){
         const formulario = this.buscaPorID(id);
 
         Object.entries(dadosAtualizacao).forEach(
@@ -28,7 +28,7 @@ export class FormularioArmazenados{
         const formulario = this.buscaPorID(id);
 
         this.#formularios = this.#formularios.filter(
-            formularioSalvo => formularioSalvo.id !== id
+            formularioSalvo => formularioSalvo.ID !== id
         )
 
         return formulario;
@@ -36,7 +36,7 @@ export class FormularioArmazenados{
 
     private buscaPorID(id: string){
         const possivelFormulario = this.#formularios.find(
-            formularioSalvo => formularioSalvo.id === id
+            formularioSalvo => formularioSalvo.ID === id
         )
 
         if (!possivelFormulario){

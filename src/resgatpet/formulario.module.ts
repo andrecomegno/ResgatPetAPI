@@ -1,10 +1,16 @@
 import { Module } from "@nestjs/common";
-import { FormularioController as  FormularioController } from "./formulario/formulario.controller";
-import { FormularioArmazenados as FormularioArmazenados } from "./formulario/formulario.dm";
+import { DatabaseModule } from "src/database/database.module";
+import { FormularioController } from "./formulario/formulario.controller";
+import { formularioProvider } from "./formulario/formulario.provider";
+import { FormularioService } from "./formulario/formulario.service";
 
 @Module({
+    imports: [DatabaseModule],
     controllers:[FormularioController],
-    providers: [FormularioArmazenados]
+    providers: [
+        ...formularioProvider,
+        FormularioService
+    ]
 })
 
 export class FormularioModule{}
