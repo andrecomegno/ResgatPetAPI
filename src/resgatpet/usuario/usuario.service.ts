@@ -27,7 +27,7 @@ export class UsuarioService {
         usuario.TELEFONE = dados.TELEFONE
         usuario.EMAIL = dados.EMAIL
         usuario.trocaSenha(dados.SENHA)
-        usuario.FOTO = dados.FOTO
+        // usuario.FOTO = dados.FOTO
         usuario.LEVEL = dados.LEVEL
 
         return this.usuarioRepository.save(usuario)
