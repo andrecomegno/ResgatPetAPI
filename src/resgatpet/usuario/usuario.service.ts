@@ -113,7 +113,7 @@ export class UsuarioService {
 
         return <RetornoObjDTO>{
             message: objRetorno[1] ? 'Login Efetuado' : 'Usuario ou senha Ivalidos',
-            return: objRetorno[1] ? objRetorno[0] : null
+            return: objRetorno[1] ? objRetorno : null
         }
     }
 
