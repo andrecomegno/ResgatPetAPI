@@ -27,7 +27,7 @@ export class UsuarioService {
         usuario.TELEFONE = dados.TELEFONE
         usuario.EMAIL = dados.EMAIL
         usuario.trocaSenha(dados.SENHA)
-        usuario.FOTO = dados.FOTO
+        // usuario.FOTO = dados.FOTO
         usuario.LEVEL = dados.LEVEL
 
         return this.usuarioRepository.save(usuario)
@@ -113,8 +113,7 @@ export class UsuarioService {
 
         return <RetornoObjDTO>{
             message: objRetorno[1] ? 'Login Efetuado' : 'Usuario ou senha Ivalidos',
-            return: objRetorno[1] ? objRetorno[0] : null,
-            status: true
+            return: objRetorno[1] ? objRetorno : null
         }
     }
 

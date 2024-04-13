@@ -25,7 +25,7 @@ export class UsuarioController {
                 usuario.TELEFONE,
                 usuario.EMAIL,
                 usuario.SENHA,
-                usuario.FOTO,
+                // usuario.FOTO,
                 usuario.LEVEL
             )
         );

@@ -22,8 +22,8 @@ export class Usuario {
     @Column({length: 255})
     SENHA: string;
 
-    @Column({length: 255})
-    FOTO: string;
+    // @Column({length: 255})
+    // FOTO: string;
 
     @Column({length: 255})
     LEVEL: string;
