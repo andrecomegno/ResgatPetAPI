@@ -12,6 +12,7 @@ export class AtualizarFormularioDTO{
     IMAGEM: string;
 
     @IsString()
+    @IsOptional()
     @IsNotEmpty({message: "Endereço não pode ser vazio"})
     @ApiProperty({
         example: 'Rua Lopes 1734',
@@ -20,6 +21,7 @@ export class AtualizarFormularioDTO{
     ENDERECO: string;
 
     @IsString()
+    @IsOptional()
     @IsNotEmpty({message: "Cidade não pode ser vazio"})
     @ApiProperty({
         example: 'Bauru',
@@ -28,6 +30,7 @@ export class AtualizarFormularioDTO{
     CIDADE: string;
 
     @IsString()
+    @IsOptional()
     @IsNotEmpty({message: "Raça não pode ser vazio"})
     @ApiProperty({
         example: 'Poodle',
@@ -36,6 +39,7 @@ export class AtualizarFormularioDTO{
     RACA: string;
 
     @IsString()
+    @IsOptional()
     @IsNotEmpty({message: "Sexo não pode ser vazio"})
     @ApiProperty({
         example: 'Macho',
@@ -44,6 +48,7 @@ export class AtualizarFormularioDTO{
     SEXO: string;
 
     @IsString()
+    @IsOptional()
     @IsNotEmpty({message: "Cor não pode ser vazio"})
     @ApiProperty({
         example: 'Branco',
@@ -52,6 +57,7 @@ export class AtualizarFormularioDTO{
     COR: string;
 
     @IsString()
+    @IsOptional()
     @IsNotEmpty({message: "Saude não pode ser vazio"})
     @ApiProperty({
         example: 'Ferido',
@@ -60,6 +66,7 @@ export class AtualizarFormularioDTO{
     SAUDE: string;
 
     @IsString()
+    @IsOptional()
     @IsNotEmpty({message: "Acessorio não pode ser vazio"})
     @ApiPropertyOptional({
         example: 'Coleira',
@@ -68,6 +75,7 @@ export class AtualizarFormularioDTO{
     ACESSORIO: string;
 
     @IsString()
+    @IsOptional()
     @IsNotEmpty({message: "Usuario não pode ser vazio"})
     @ApiProperty({
         example: 'Juvenal Oliveira da Silva de Souza',

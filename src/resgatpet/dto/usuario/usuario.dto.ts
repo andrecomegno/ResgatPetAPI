@@ -6,7 +6,7 @@ import { SenhaForte } from "../../validacao/validacaoSenha";
 export class UsuarioDTO {
     
     @IsString()
-    @IsNotEmpty({message: " Nome Não pode ser vazio "})
+    @IsNotEmpty({message: "Por favor, preencha todos os campos. "})
     @ApiProperty({
         example: 'Roberto Silva',
         description: `O nome é usado para identificar o usuário, em telas, cadastros e outros.`,
@@ -14,7 +14,7 @@ export class UsuarioDTO {
     NOMECOMPLETO: string;
 
     @IsString()
-    @IsNotEmpty({message: " CPF ou CNPJ não pode ser vazio "})
+    @IsNotEmpty({message: "Por favor, preencha todos os campos. "})
     @ApiProperty({
         example: '00000000000',
         description: `o CPF ou CNPJ é usado para identificação pessoal`,
@@ -22,7 +22,7 @@ export class UsuarioDTO {
     CPF_CNPJ: string;
 
     @IsString()
-    @IsNotEmpty({message: " Telefone não pode ser vazio "})
+    @IsNotEmpty({message: "Por favor, preencha todos os campos. "})
     @ApiProperty({
         example: '000000000',
         description: `O telefone pode ser usado para se comunicar com o usuário.`,
@@ -30,8 +30,8 @@ export class UsuarioDTO {
     TELEFONE: string;
 
     @IsString()
-    @IsNotEmpty({message: " Email não pode ser vazio "})
-    @EmailUnico({ message: ' O email informado já existe ' })
+    @IsNotEmpty({message: "Por favor, preencha todos os campos. "})
+    @EmailUnico({message: 'O E-Mail informado já existe. ' })
     @ApiProperty({
         example: 'teste@teste.com',
         description: `O email é utilizado para o login e identificação do usuário. Deve ser único.`,
@@ -39,9 +39,9 @@ export class UsuarioDTO {
     EMAIL: string;
 
     @IsString()
-    @MinLength(6,{message: " Senha precisa ter minimo 6 digitos "})
-    @SenhaForte({message: " Senha Muito Fraca "})    
-    @IsNotEmpty({message: " Senha Não pode ser vazio "})
+    @IsNotEmpty({message: "Por favor, preencha todos os campos. "})
+    @MinLength(6,{message: "Senha precisa ter minimo 6 digitos. "})
+    @SenhaForte({message: "Senha Muito Fraca. "})    
     @ApiProperty({
         example: 'Asd@444555666',
         description: `A senha deve conter pelo menos 6 caracteres, contar com letras minusculas e maiusculas, numeros e caracteres especiais.`,
@@ -56,7 +56,7 @@ export class UsuarioDTO {
     FOTO: string;
 
     @IsString()
-    @IsNotEmpty({message: " Level Não pode ser vazio "})
+    @IsNotEmpty({message: "Level NULL. "})
     @ApiProperty({
         example: 'level 1',
         description: `Esse campo é responsável pela nivel de acesso ao usuário e ONG.`,

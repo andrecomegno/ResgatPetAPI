@@ -3,7 +3,7 @@ import { Repository } from "typeorm";
 import { RetornoCadastroDTO, RetornoObjDTO } from "../dto/retorno.dto";
 import { ListaUsuarioDTO } from "../dto/usuario/listaUsuario.dto";
 import { UsuarioDTO } from "../dto/usuario/usuario.dto";
-import { Usuario } from './usuario.entity'
+import { USUARIO } from './usuario.entity'
 import { v4 as uuid } from 'uuid'
 import { AtualizarUsuarioDTO } from "../dto/usuario/atualizarUsuario.dto";
 
@@ -12,7 +12,7 @@ export class UsuarioService {
 
     constructor(
         @Inject('USUARIO_REPOSITORY')
-        private usuarioRepository: Repository<Usuario>
+        private usuarioRepository: Repository<USUARIO>
     ) { }
 
     async listar(): Promise<ListaUsuarioDTO[]> {
@@ -20,7 +20,7 @@ export class UsuarioService {
     }
 
     async inserir(dados: UsuarioDTO): Promise<RetornoCadastroDTO> {
-        let usuario = new Usuario();
+        let usuario = new USUARIO();
         usuario.ID = uuid()
         usuario.NOMECOMPLETO = dados.NOMECOMPLETO
         usuario.CPF_CNPJ = dados.CPF_CNPJ
@@ -34,18 +34,20 @@ export class UsuarioService {
             .then((result) => {
                 return <RetornoCadastroDTO>{
                     id: usuario.ID,
-                    message: "Usuario Cadastrado !"
+                    message: "Usuario Cadastrado !",
+                    success: true
                 };
             })
             .catch((error) => {
                 return <RetornoCadastroDTO>{
                     id: "",
-                    message: "Houve um erro ao cadastrar." + error.message
+                    message: "Houve um erro ao cadastrar." + error.message,
+                    success: false
                 };
             })
     }
 
-    localizarID(ID: string): Promise<Usuario> {
+    localizarID(ID: string): Promise<USUARIO> {
         return this.usuarioRepository.findOne({
             where: {
                 ID,
@@ -112,10 +114,10 @@ export class UsuarioService {
             objRetorno = [usuario, usuario.login(SENHA)];
 
         return <RetornoObjDTO>{
-            message: objRetorno[1] ? 'Login Efetuado' : 'Usuario ou senha Ivalidos',
+            message: objRetorno[1] ? 'Login Efetuado' : 'Usuario ou Senha Ivalidos !',
             return: objRetorno[1] ? objRetorno : null
         }
-    }
+    }     
 
     async validaEmail(EMAIL: string) {
         const possivelUsuario = await this.usuarioRepository.findOne({
@@ -126,7 +128,7 @@ export class UsuarioService {
         return (possivelUsuario !== null)
     }
 
-    async buscarPorEmail(EMAIL: string): Promise<Usuario> {
+    async buscarPorEmail(EMAIL: string): Promise<USUARIO> {
         return this.usuarioRepository.findOne({
             where: {
                 EMAIL,

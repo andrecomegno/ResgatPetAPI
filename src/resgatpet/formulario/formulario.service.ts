@@ -1,18 +1,20 @@
 import { Inject, Injectable } from "@nestjs/common";
 import { Repository } from "typeorm";
 import { RetornoCadastroDTO, RetornoObjDTO } from "../dto/retorno.dto";
-import { Formulario } from './formulario.entity'
+import { FORMULARIO } from './formulario.entity'
 import { v4 as uuid } from 'uuid'
 import { ListaFormularioDTO } from "../dto/formulario/listaFormulario.dto";
 import { FormularioDTO } from "../dto/formulario/formulario.dto";
 import { AtualizarUsuarioDTO } from "../dto/usuario/atualizarUsuario.dto";
+import { UsuarioService } from "../usuario/usuario.service";
 
 @Injectable()
 export class FormularioService {
 
     constructor(
         @Inject('FORMULARIO_REPOSITORY')
-        private formularioRepository: Repository<Formulario>
+        private formularioRepository: Repository<FORMULARIO>,
+        private readonly usuarioService: UsuarioService
     ) { }
 
     async listar(): Promise<ListaFormularioDTO[]> {
@@ -20,7 +22,7 @@ export class FormularioService {
     }
 
     async inserir(dados: FormularioDTO): Promise<RetornoCadastroDTO> {
-        let formulario = new Formulario();
+        let formulario = new FORMULARIO();
         formulario.ID = uuid()
         formulario.IMAGEM = dados.IMAGEM
         formulario.ENDERECO = dados.ENDERECO
@@ -30,24 +32,26 @@ export class FormularioService {
         formulario.COR = dados.COR
         formulario.SAUDE = dados.SAUDE
         formulario.ACESSORIO = dados.ACESSORIO
-        formulario.USUARIO = dados.USUARIO
+        formulario.USUARIO = await this.usuarioService.localizarID(dados.USUARIO);
 
         return this.formularioRepository.save(formulario)
             .then((result) => {
                 return <RetornoCadastroDTO>{
                     id: formulario.ID,
-                    message: "Cadastrado com Sucesso !"
+                    message: "Cadastrado com Sucesso !",
+                    success: true
                 };
             })
             .catch((error) => {
                 return <RetornoCadastroDTO>{
                     id: "",
-                    message: "Houve um erro ao cadastrar." + error.message
+                    message: "Houve um erro ao cadastrar." + error.message,
+                    success: false
                 };
             })
     }
 
-    localizarID(ID: string): Promise<Formulario> {
+    localizarID(ID: string): Promise<FORMULARIO> {
         return this.formularioRepository.findOne({
             where: {
                 ID,

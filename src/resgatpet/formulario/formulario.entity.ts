@@ -1,8 +1,9 @@
-import { Column, PrimaryColumn } from 'typeorm';
+import { Column, JoinColumn, ManyToOne, PrimaryColumn } from 'typeorm';
 import { Entity } from 'typeorm/decorator/entity/Entity';
+import { USUARIO } from '../usuario/usuario.entity';
 
 @Entity()
-export class Formulario {
+export class FORMULARIO {
     @PrimaryColumn()
     ID: string;
     
@@ -28,8 +29,10 @@ export class Formulario {
     SAUDE: string;
 
     @Column({length: 255})
-    ACESSORIO: string;
-
-    @Column({length: 255})
-    USUARIO: string;
+    ACESSORIO: string; 
+    
+    // IDUSUARIO
+    @ManyToOne(() => USUARIO, usuario => usuario.formularios)
+    @JoinColumn({ name: 'IDUSUARIO', referencedColumnName:'ID'})
+    USUARIO: USUARIO;
 }

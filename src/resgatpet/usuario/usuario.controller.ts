@@ -15,27 +15,13 @@ export class UsuarioController {
 
     @ApiResponse({ status: 200, description: 'Retorna os usuários cadastrados.'})
     @Get()
-    async RetornoUsuarios(){
-        const usuarioListados = await this.usuarioService.listar();
-        const listaRetorno = usuarioListados.map(
-            usuario => new ListaUsuarioDTO(
-                usuario.ID,
-                usuario.NOMECOMPLETO,
-                usuario.CPF_CNPJ,
-                usuario.TELEFONE,
-                usuario.EMAIL,
-                usuario.SENHA,
-                // usuario.FOTO,
-                usuario.LEVEL
-            )
-        );
-        
-        return listaRetorno;
+    async Retorno():Promise<ListaUsuarioDTO[]>{
+        return this.usuarioService.listar();
     }
 
     @ApiCreatedResponse({ status: 200, description: 'Retorna que houve sucesso ao cadastrar o usuário e retorna o ID criado.'})
     @Post()
-    async CriaUsuario(@Body() dadosUsuario: UsuarioDTO):Promise<RetornoCadastroDTO>{
+    async Criar(@Body() dadosUsuario: UsuarioDTO):Promise<RetornoCadastroDTO>{
         return this.usuarioService.inserir(dadosUsuario)
     }
 
@@ -48,24 +34,24 @@ export class UsuarioController {
     @ApiResponse({ status: 200, description: 'Retorna que houve sucesso ao alterar o usuário.'})
     @ApiResponse({ status: 500, description: 'Retorna que o usuário não foi encontrado.'})
     @Put('/:id')
-    async atualizaUsuario(@Param('id') id: string, @Body() novosDados: AtualizarUsuarioDTO){
+    async Atualizar(@Param('id') id: string, @Body() novosDados: AtualizarUsuarioDTO){
         const usuarioAtualizado = await this.usuarioService.alterar(id, novosDados)
 
         return{
             usuario: usuarioAtualizado,
-            message: 'Usuario Atualizado com Sucesso ! ;)',
+            message: 'Usuario Atualizado com Sucesso !',
             status:200
         }
     }
 
     @ApiCreatedResponse({ status: 200, description: 'Retorna que houve sucesso ao remover o usuário.'})
     @Delete('/:id')
-    async removeUsuario(@Param('id') id: string){
+    async Remover(@Param('id') id: string){
         const usuarioRemovido = await this.usuarioService.remove(id)
 
         return{
             usuario: usuarioRemovido,
-            message: 'Usuario removido com Sucesso :S',
+            message: 'Usuario removido com Sucesso !',
             status:200
         }
     }
@@ -73,7 +59,7 @@ export class UsuarioController {
     @ApiResponse({ status: 200, description: 'Retorna que houve sucesso ao trocar a foto.'})
     @ApiResponse({ status: 500, description: 'Retorna que a foto não foi encontrado.'})
     @Post('/foto/:id')
-    async atualizaFoto(@Param('id') id: string,@Body() AlteraFotoUsuarioDTO){
+    async AtualizarFoto(@Param('id') id: string,@Body() AlteraFotoUsuarioDTO){
         const usuario = await this.usuarioService.alterar(id,AlteraFotoUsuarioDTO)
 
         return{

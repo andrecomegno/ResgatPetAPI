@@ -1,9 +1,10 @@
-import { Column, PrimaryColumn } from 'typeorm';
+import { Column, OneToMany, PrimaryColumn } from 'typeorm';
 import { Entity } from 'typeorm/decorator/entity/Entity';
 import * as bcrypt from 'bcrypt'
+import { FORMULARIO } from '../formulario/formulario.entity';
 
 @Entity()
-export class Usuario {
+export class USUARIO {
     @PrimaryColumn()
     ID: string;
     
@@ -27,6 +28,10 @@ export class Usuario {
 
     @Column({length: 255})
     LEVEL: string;
+
+    // ID FORMULARIO
+    @OneToMany(() => FORMULARIO, formulario => formulario.USUARIO)
+    formularios: FORMULARIO[];
 
     trocaSenha(SENHA){
         const saltOrRounds=10

@@ -8,7 +8,6 @@ export class ListaFormularioDTO{
         readonly SEXO: string,
         readonly COR: string,
         readonly SAUDE: string,
-        readonly ACESSORIO: string,
-        readonly USUARIO: string
+        readonly ACESSORIO: string
     ){}
 }

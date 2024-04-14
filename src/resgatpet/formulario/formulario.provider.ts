@@ -1,10 +1,10 @@
 import { DataSource } from 'typeorm';
-import { Formulario } from './formulario.entity';
+import { FORMULARIO } from './formulario.entity';
 
 export const formularioProvider = [
   {
     provide: 'FORMULARIO_REPOSITORY',
-    useFactory: (dataSource: DataSource) => dataSource.getRepository(Formulario),
+    useFactory: (dataSource: DataSource) => dataSource.getRepository(FORMULARIO),
     inject: ['DATA_SOURCE'],
   },
 ];
