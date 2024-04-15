@@ -69,10 +69,26 @@ export class FormularioDTO {
     ACESSORIO: string;
 
     @IsString()
-    @IsNotEmpty({message: "Usuario não pode ser vazio "})
+    @IsNotEmpty({message: "Data Entrada não pode ser vazio "})
+    @ApiPropertyOptional({
+        example: '2024-01-01',
+        description: `Data entrada que foi encontrado  o pet.`,
+    })
+    DATAENTRADA: string; 
+
+    @IsString()
+    @IsNotEmpty({message: "Status não pode ser vazio "})
+    @ApiPropertyOptional({
+        example: 'Encaminhado para ONG',
+        description: `Status do andamento dos pets.`,
+    })
+    STATUS: string; 
+
+    @IsString()
+    @IsNotEmpty({message: "ID Usuario não pode ser vazio "})
     @ApiProperty({
-        example: 'Juvenal Oliveira da Silva de Souza',
-        description: `Usuario que encontrou o Pet.`,
+        example: '1ghjk234312dhuiyhquhu12',
+        description: `ID Usuario que encontrou o Pet.`,
     })
     USUARIO: string;
 }

@@ -4,7 +4,7 @@ import { v4 as uuidv4 } from 'uuid';
 
 const multerConfig = {
     storage: diskStorage({
-        destination: '/tmp',
+        destination: './upload/files',
         filename:(req, file, cb) => {
             const filename = path.parse(file.originalname).name.replace(/\s/g, '') + '-' + uuidv4();
 
@@ -12,6 +12,6 @@ const multerConfig = {
             cb(null, `${filename}${extension}`)
         },
     }),
-};
+};  
 
 export default multerConfig;

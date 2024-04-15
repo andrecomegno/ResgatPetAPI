@@ -30,6 +30,15 @@ export class FORMULARIO {
 
     @Column({length: 255})
     ACESSORIO: string; 
+
+    @Column({length: 255})
+    DATAENTRADA: string; 
+
+    @Column({length: 255})
+    DATASAIDA: string; 
+
+    @Column({length: 255})
+    STATUS: string; 
     
     // IDUSUARIO
     @ManyToOne(() => USUARIO, usuario => usuario.formularios)

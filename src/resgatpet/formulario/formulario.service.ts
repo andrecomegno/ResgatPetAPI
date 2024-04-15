@@ -32,6 +32,8 @@ export class FormularioService {
         formulario.COR = dados.COR
         formulario.SAUDE = dados.SAUDE
         formulario.ACESSORIO = dados.ACESSORIO
+        formulario.DATAENTRADA = dados.DATAENTRADA
+        formulario.STATUS = dados.STATUS
         formulario.USUARIO = await this.usuarioService.localizarID(dados.USUARIO);
 
         return this.formularioRepository.save(formulario)

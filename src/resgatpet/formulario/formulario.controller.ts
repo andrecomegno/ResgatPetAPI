@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Param, Delete, Put } from '@nestjs/common';
+import { Controller, Get, Post, Body, Param, Delete } from '@nestjs/common';
 import { FormularioDTO } from '../dto/formulario/formulario.dto';
 import { ApiCreatedResponse, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { FormularioService } from './formulario.service';
@@ -25,23 +25,14 @@ export class FormularioController {
     @ApiCreatedResponse({ description: 'Retorna que houve sucesso ao remover o cadastro do formulário.'})
     @Delete('/:id')
     async Remover(@Param('id') id: string){
-        const formularioRemovido = await this.formularioService.remove(id)
-
-        return{
-            formulario: formularioRemovido,
-            message: 'Formulario Removido com Sucesso !'
-        }
+        return this.formularioService.remove(id)
     }
 
     @ApiResponse({ status: 200, description: 'Retorna que houve sucesso ao trocar a foto.'})
     @ApiResponse({ status: 500, description: 'Retorna que a foto não foi encontrado.'})
     @Post('/foto/:id')
     async AtualizarFoto(@Param('id') id: string,@Body() AlteraFotoFormularioDTO){
-        const usuario = await this.formularioService.alterar(id,AlteraFotoFormularioDTO)
-
-        return{
-            usuario: usuario            
-        }
+        return this.formularioService.alterar(id,AlteraFotoFormularioDTO)
     }
 }
 

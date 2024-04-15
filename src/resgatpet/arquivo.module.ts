@@ -1,10 +1,10 @@
 import { Module } from "@nestjs/common";
 import { ArquivoController } from "./arquivos/arquivo.controller";
-import { ArquivoArmazenados } from "./arquivos/arquivo.dm";
+import { arquivoService } from "./arquivos/arquivo.service";
 
 @Module({
     controllers:[ArquivoController],
-    providers:[ArquivoArmazenados]
+    providers:[arquivoService]
 })
 
 export class ArquivoModule{}
