@@ -1,10 +1,10 @@
 import { Inject, Injectable } from "@nestjs/common";
 import { Repository } from "typeorm";
+import { v4 as uuid } from 'uuid'
 import { RetornoCadastroDTO, RetornoObjDTO } from "../dto/retorno.dto";
 import { ListaUsuarioDTO } from "../dto/usuario/listaUsuario.dto";
 import { UsuarioDTO } from "../dto/usuario/usuario.dto";
 import { USUARIO } from './usuario.entity'
-import { v4 as uuid } from 'uuid'
 import { AtualizarUsuarioDTO } from "../dto/usuario/atualizarUsuario.dto";
 
 @Injectable()

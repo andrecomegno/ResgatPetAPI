@@ -5,14 +5,6 @@ import { IsNotEmpty, IsOptional, IsString } from "class-validator";
 export class FormularioDTO {
 
     @IsString()
-    @IsOptional()
-    @ApiProperty({
-        example: 'foto.jpg',
-        description: `A foto será enviada para a ONG com o objetivo de identificar o animal.`,
-    })
-    IMAGEM: string;
-
-    @IsString()
     @IsNotEmpty({message: "Endereço não pode ser vazio "})
     @ApiProperty({
         example: 'Rua Lopes 1734',
@@ -82,7 +74,7 @@ export class FormularioDTO {
         example: 'Encaminhado para ONG',
         description: `Status do andamento dos pets.`,
     })
-    STATUS: string; 
+    STATUS: string;
 
     @IsString()
     @IsNotEmpty({message: "ID Usuario não pode ser vazio "})
@@ -91,4 +83,12 @@ export class FormularioDTO {
         description: `ID Usuario que encontrou o Pet.`,
     })
     USUARIO: string;
+
+    @IsString()
+    @IsOptional()
+    @ApiProperty({
+        example: 'foto.jpg',
+        description: `A foto será enviada para a ONG com o objetivo de identificar o animal.`,
+    })
+    ARQUIVOS: string;
 }

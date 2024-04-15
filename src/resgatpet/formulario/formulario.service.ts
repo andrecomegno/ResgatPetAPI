@@ -7,14 +7,15 @@ import { ListaFormularioDTO } from "../dto/formulario/listaFormulario.dto";
 import { FormularioDTO } from "../dto/formulario/formulario.dto";
 import { AtualizarUsuarioDTO } from "../dto/usuario/atualizarUsuario.dto";
 import { UsuarioService } from "../usuario/usuario.service";
+import { ArquivoService } from "../arquivos/arquivo.service";
 
 @Injectable()
 export class FormularioService {
-
     constructor(
         @Inject('FORMULARIO_REPOSITORY')
         private formularioRepository: Repository<FORMULARIO>,
-        private readonly usuarioService: UsuarioService
+        private readonly usuarioService: UsuarioService,
+        private readonly arquivosService: ArquivoService
     ) { }
 
     async listar(): Promise<ListaFormularioDTO[]> {
@@ -24,7 +25,6 @@ export class FormularioService {
     async inserir(dados: FormularioDTO): Promise<RetornoCadastroDTO> {
         let formulario = new FORMULARIO();
         formulario.ID = uuid()
-        formulario.IMAGEM = dados.IMAGEM
         formulario.ENDERECO = dados.ENDERECO
         formulario.CIDADE = dados.CIDADE
         formulario.RACA = dados.RACA
@@ -33,8 +33,9 @@ export class FormularioService {
         formulario.SAUDE = dados.SAUDE
         formulario.ACESSORIO = dados.ACESSORIO
         formulario.DATAENTRADA = dados.DATAENTRADA
-        formulario.STATUS = dados.STATUS
+        formulario.STATUS = dados.STATUS        
         formulario.USUARIO = await this.usuarioService.localizarID(dados.USUARIO);
+        formulario.ARQUIVOS = await this.arquivosService.localizarID(dados.ARQUIVOS);
 
         return this.formularioRepository.save(formulario)
             .then((result) => {

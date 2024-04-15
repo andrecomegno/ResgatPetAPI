@@ -5,6 +5,8 @@ import { formularioProvider } from "./formulario/formulario.provider";
 import { FormularioService } from "./formulario/formulario.service";
 import { usuarioProvider } from "./usuario/usuario.provider";
 import { UsuarioService } from "./usuario/usuario.service";
+import { ArquivoService } from "./arquivos/arquivo.service";
+import { arquivosProvider } from "./arquivos/arquivo.provider";
 
 @Module({
     imports: [DatabaseModule],
@@ -13,7 +15,9 @@ import { UsuarioService } from "./usuario/usuario.service";
         ...formularioProvider,
         FormularioService,
         ...usuarioProvider,
-        UsuarioService
+        UsuarioService,
+        ...arquivosProvider,
+        ArquivoService
     ]
 })
 

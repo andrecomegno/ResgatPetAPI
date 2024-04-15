@@ -1,9 +1,10 @@
-import { Column, Entity, PrimaryColumn } from "typeorm";
+import { Column, Entity, OneToMany, PrimaryColumn } from "typeorm";
+import { FORMULARIO } from "../formulario/formulario.entity";
 
 @Entity()
-export class ARQUIVOS{
+export class ARQUIVOS {
     @PrimaryColumn()
-    ID: number;
+    ID: string;
 
     @Column({ length: 1255 })
     NOME: string;
@@ -16,4 +17,8 @@ export class ARQUIVOS{
 
     @Column({ length: 1255 })
     URL: string;
+
+    // ID FORMULARIO
+    @OneToMany(() => FORMULARIO, formulario => formulario.ARQUIVOS)
+    formularios: FORMULARIO[];
 }

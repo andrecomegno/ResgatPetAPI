@@ -1,7 +1,6 @@
 export class ListaFormularioDTO{
     constructor(
         readonly ID: string,
-        readonly IMAGEM: string,
         readonly ENDERECO: string,
         readonly CIDADE: string,
         readonly RACA: string,

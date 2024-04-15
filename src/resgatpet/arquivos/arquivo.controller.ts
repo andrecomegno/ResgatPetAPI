@@ -2,11 +2,13 @@ import { Controller, Get, Param, Post, Req, Res, UploadedFile, UseInterceptors }
 import { FileInterceptor } from "@nestjs/platform-express";
 import { Request } from "express";
 import multerConfig from "./multer-config";
-import { arquivoService } from "./arquivo.service";
+import { ArquivoService } from "./arquivo.service";
+import { ApiTags } from "@nestjs/swagger";
 
+@ApiTags('arquivos')
 @Controller('/arquivos')
 export class ArquivoController{
-    constructor(private readonly arquivos: arquivoService){}
+    constructor(private readonly arquivos: ArquivoService){}
 
     @Post()
     // ARQUIVO E A CHAVE QUE VAI DENTRO DO KEY NO POSTMAN
