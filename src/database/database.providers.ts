@@ -15,12 +15,12 @@ export const databaseProviders = [
         host: 'localhost',
         port: 3306,
         username: 'root',
-        password: '123456',
+        password: '',
         database: 'resgatpet',
         entities: [
             __dirname + '/../**/*.entity{.ts,.js}',
         ],
-        synchronize: false,
+        synchronize: true,
         connectTimeout: 15000, // Tempo limite de 15 segundos (em milissegundos)
       });
       
