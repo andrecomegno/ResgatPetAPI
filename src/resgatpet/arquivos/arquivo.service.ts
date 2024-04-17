@@ -3,7 +3,7 @@ import { v4 as uuid } from 'uuid'
 import { Request } from 'express';
 import { Repository } from "typeorm";
 import { ARQUIVOS } from './arquivo.entity';
-import { ArquivosDTO } from '../dto/arquivos/arquivo.dto';
+import { RetornoCadastroDTO } from '../dto/retorno.dto';
 
 @Injectable()
 export class ArquivoService {
@@ -11,7 +11,6 @@ export class ArquivoService {
     @Inject('ARQUIVOS_REPOSITORY')
     private arquivosRepository: Repository<ARQUIVOS>,
   ) { }
-  arquivos = [];
 
   async SalvarDados(file: Express.Multer.File, req: Request) {
     let arquivo = new ARQUIVOS();
@@ -21,15 +20,29 @@ export class ArquivoService {
     arquivo.CONTENTTYPE = file.mimetype;
     arquivo.URL = `${file.filename}`;
 
-    this.arquivos.push(arquivo);
-    return arquivo.URL;
+    return this.arquivosRepository.save(arquivo)
+    .then((result) => {
+        return <RetornoCadastroDTO>{
+            id: arquivo.ID,
+            message: "Imagem cadastrada com Sucesso !",
+            success: true
+        };
+    })
+    .catch((error) => {
+        return <RetornoCadastroDTO>{
+            id: "",
+            message: "Houve um erro ao cadastrar." + error.message,
+            success: false
+        };
+    })
   }
 
-  async ValidaArquivo(nome: string) {
-    const possivelArquivo = this.arquivos.find(
-      file => file.fileName === nome
-    );
-    return (possivelArquivo !== undefined)
+  async ValidaArquivo(NOME: string): Promise<ARQUIVOS> {
+    return this.arquivosRepository.findOne({
+      where: {
+        NOME,
+      },
+    });
   }
 
   localizarID(ID: string): Promise<ARQUIVOS> {
