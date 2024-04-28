@@ -4,14 +4,15 @@
   </a>
 </p>
 
-<div>
-  <p align="center">
-    <img src="https://github.com/andrecomegno/ResgatPet/blob/main/src/assents/imagens/github/logo.png" alt="Logo" height="280">
-  </p>
-</div>
+<p>
+  <a href="https://opensource.org/licenses/MIT">
+    <img src="https://img.shields.io/badge/License-MIT-blue.svg" alt="License MIT">   
+    <img src="https://img.shields.io/github/followers/andrecomegno.svg" alt="Followers">                                                                               
+  </a>
+</p>
 
 # Introdução
-<p> Esse projeto é um API do Site [ResgatPet] com foco em resgatar pets abandonados e passar para as ONG 's responsáveis, desenvolvido no Senac no Projeto Integrador no curso de Full-Stack. Essa API é responsavel por cadastrar todos os usuarios e formularios de pet econtrados.</p>
+Esse projeto é um API do Site [ResgatPet] com foco em resgatar pets abandonados e passar para as ONG 's responsáveis, desenvolvido no Senac no Projeto Integrador no curso de Full-Stack. Essa API é responsavel por cadastrar todos os usuarios e formularios de pet econtrados.
 
 Com a API será possivel fazer:
 - **Exclusão**: Permite excluir os Usuarios e Pet.
@@ -22,7 +23,7 @@ Com a API será possivel fazer:
 **Professor**: JOÃO PEDRO PARELLA
 
 ## Acessar API
-A nossa API está hospedada no Render, acessar o Swagger da API
+A nossa API está hospedada no Render, acessar o [Swagger] da API
 
 ## UML
 <img src="src/image/uml.png" alt="Logo" height="280">
@@ -34,5 +35,6 @@ A nossa API está hospedada no Render, acessar o Swagger da API
 <img align="left" alt="Postman" width="30px" src="https://github.com/andrecomegno/andrecomegno/blob/main/icon/postman.png" />
 <br>
 
-[ResgatPet]: https://github.com/andrecomegno/ResgatPet
+#
+[ResgatPet]: https://resgatpet.pvferreira.com.br/
 [Swagger]: https://resgatpetapi.onrender.com/api
